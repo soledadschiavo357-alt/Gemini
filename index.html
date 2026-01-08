@@ -24,68 +24,69 @@
   <meta name="twitter:description" content="原生多模态，100万+ Token 超长记忆。成品号/代充，支持 2TB Google One 云空间，自动发货与稳定防封。">
   <meta name="twitter:image" content="https://gemini-vip.top/logo.png">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <!-- Ecommerce Meta -->
+  <meta name="price" content="172">
+  <meta name="currency" content="CNY">
+  <meta name="availability" content="in stock">
 
+  <!-- Social Extra -->
+  <meta name="twitter:site" content="@GeminiVIP">
+  <meta name="twitter:creator" content="@GeminiVIP">
+
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/logo.png">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="zh-CN" href="https://gemini-vip.top/">
+
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    html {
-      scroll-behavior: smooth; /* 仅在点击锚点跳转时平滑，平时滚动由系统接管 */
-    }
-    /* 优化渲染性能，防止丢帧 */
-    body {
-      -webkit-font-smoothing: antialiased;
-    }
-    body { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; font-family: 'Inter', sans-serif; }
+
     .gemini-bg {
       background-color: #020617;
       background-image:
         radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.18), transparent 25%),
         radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.18), transparent 25%);
     }
+
     .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
     .glass-card:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.25); }
-    .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
-    @keyframes gradient-x { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
     .bg-noise { background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; }
+
+    /* 动画类 */
+    .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
     .animate-float-slow { animation: float 8s ease-in-out infinite; }
     .animate-pulse-slow { animation: pulse 6s ease-in-out infinite; }
+    .animate-gradient-xy { animation: gradient-xy 8s ease infinite; }
+    .group-hover\/btn\:animate-shine:hover { animation: shine 0.75s; }
 
-    /* 🌟 电影级渐入：模糊 + 缩放 + 上浮 */
-    .reveal-hero {
-      opacity: 0;
-      filter: blur(20px);
-      transform: scale(0.9) translateY(40px);
-      transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); /* Apple 风格极度丝滑缓动 */
-      will-change: transform, opacity, filter;
-    }
-    
-    /* 普通元素渐入 */
-    .reveal {
-      opacity: 0;
-      filter: blur(8px); /* 关键：加一点模糊 */
-      transform: translateY(30px) scale(0.98);
-      transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-      will-change: transform, opacity, filter;
-    }
+    /* 进场动画 */
+    .reveal-hero { opacity: 0; filter: blur(20px); transform: scale(0.9) translateY(40px); transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity, filter; }
+    .reveal { opacity: 0; filter: blur(8px); transform: translateY(30px) scale(0.98); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity, filter; }
+    .reveal.active, .reveal-hero.active { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
 
-    /* 激活状态 */
-    .reveal.active, .reveal-hero.active {
-      opacity: 1;
-      filter: blur(0);
-      transform: translateY(0) scale(1);
-    }
-
-    /* 💡 错落延时 (Stagger)：让元素排队出来，不要一起出来 */
+    /* 延迟工具类 */
     .delay-100 { transition-delay: 0.1s; }
     .delay-200 { transition-delay: 0.2s; }
     .delay-300 { transition-delay: 0.3s; }
-    
-    /* Lenis 优化 - 已移除 */
+
+    /* 关键帧动画 */
+    @keyframes gradient-x { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes float { 0%, 100% { transform: translateY(0px) rotate(3deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
+    @keyframes shine { 100% { left: 125%; } }
+    @keyframes gradient-xy { 0%{filter:hue-rotate(0deg)} 50%{filter:hue-rotate(30deg)} 100%{filter:hue-rotate(0deg)} }
+    @keyframes scan { 0%, 100% { top: 0%; opacity: 0; } 10% { opacity: 1; } 50% { top: 90%; } 90% { opacity: 1; } }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  
 
   <script type="application/ld+json">
   {
@@ -451,12 +452,7 @@
       </div>
     </div>
     
-    <style>
-      @keyframes shine { 100% { left: 125%; } }
-      .group-hover\/btn\:animate-shine:hover { animation: shine 0.75s; }
-      .animate-gradient-xy { animation: gradient-xy 8s ease infinite; }
-      @keyframes gradient-xy { 0%{filter:hue-rotate(0deg)} 50%{filter:hue-rotate(30deg)} 100%{filter:hue-rotate(0deg)} }
-    </style>
+    
   </section>
 
 
@@ -921,14 +917,7 @@
       </div>
     </div>
 
-    <style>
-      @keyframes scan {
-        0%, 100% { top: 0%; opacity: 0; }
-        10% { opacity: 1; }
-        50% { top: 90%; }
-        90% { opacity: 1; }
-      }
-    </style>
+    
   </section>
 
   <section id="blog" class="py-24 relative border-t border-white/5 bg-black/20">
@@ -1344,16 +1333,16 @@
             </li>
             <li><a href="#" class="hover:text-purple-400 transition">订单查询</a></li>
             <li><a href="#faq" class="hover:text-purple-400 transition">常见问题</a></li>
-            <li><a href="#" class="hover:text-purple-400 transition">退款政策</a></li>
+            <li><a href="legal.html#refund" class="hover:text-purple-400 transition">退款政策</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-bold text-white mb-6">法律条款</h4>
           <ul class="space-y-4 text-sm text-slate-400">
-            <li><a href="#" class="hover:text-purple-400 transition">服务条款</a></li>
-            <li><a href="#" class="hover:text-purple-400 transition">隐私政策</a></li>
-            <li><a href="#" class="hover:text-purple-400 transition">免责声明</a></li>
+            <li><a href="legal.html#terms" class="hover:text-purple-400 transition">服务条款</a></li>
+            <li><a href="legal.html#privacy" class="hover:text-purple-400 transition">隐私政策</a></li>
+            <li><a href="legal.html#disclaimer" class="hover:text-purple-400 transition">免责声明</a></li>
           </ul>
         </div>
       </div>
