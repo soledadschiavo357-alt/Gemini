@@ -11,6 +11,11 @@
       "statusCode": 302
     },
     {
+      "source": "/go/api",
+      "destination": "https://www.naifeistation.com/index/buy?id=266&invite=3903",
+      "statusCode": 302
+    },
+    {
       "source": "/go/support",
       "destination": "https://www.naifeistation.com/i/Satqr",
       "permanent": false
