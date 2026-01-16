@@ -26,7 +26,9 @@ def get_all_urls():
     if os.path.exists(blog_dir):
         for file in os.listdir(blog_dir):
             if file.endswith(".html"):
-                urls.append(f"https://{HOST}/blog/{file}")
+                # Clean URL: remove .html
+                clean_file = file.replace(".html", "")
+                urls.append(f"https://{HOST}/blog/{clean_file}")
     
     return urls
 

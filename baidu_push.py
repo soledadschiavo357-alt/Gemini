@@ -17,7 +17,9 @@ def get_priority_urls():
         if page == "index.html":
             urls.append(f"https://{HOST}/")
         else:
-            urls.append(f"https://{HOST}/{page}")
+            # Clean URL: remove .html
+            clean_page = page.replace(".html", "")
+            urls.append(f"https://{HOST}/{clean_page}")
             
     # 2. 选推：Blog 页面 (按修改时间排序，推最新的)
     blog_dir = os.path.join(base_dir, "blog")
@@ -36,7 +38,9 @@ def get_priority_urls():
             if file == "index.html":
                 blog_urls.append(f"https://{HOST}/blog/")
             else:
-                blog_urls.append(f"https://{HOST}/blog/{file}")
+                # Clean URL: remove .html
+                clean_file = file.replace(".html", "")
+                blog_urls.append(f"https://{HOST}/blog/{clean_file}")
 
     # 合并列表
     urls.extend(blog_urls)
