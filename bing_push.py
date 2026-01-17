@@ -15,11 +15,13 @@ def get_all_urls():
     
     # 1. 扫描根目录 HTML
     for file in os.listdir(base_dir):
-        if file.endswith(".html") and file != "404.html":
+        if file.endswith(".html") and file != "404.html" and file != "design.html":
             if file == "index.html":
                 urls.append(f"https://{HOST}/")
             else:
-                urls.append(f"https://{HOST}/{file}")
+                # Clean URL: remove .html
+                clean_file = file.replace(".html", "")
+                urls.append(f"https://{HOST}/{clean_file}")
     
     # 2. 扫描 blog 目录
     blog_dir = os.path.join(base_dir, "blog")

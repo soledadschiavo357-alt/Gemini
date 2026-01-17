@@ -29,12 +29,56 @@
 </head>
 <body class="gemini-bg min-h-screen text-slate-300">
 
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/90 backdrop-blur-md">
-    <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="font-bold text-lg text-white tracking-tight hover:text-purple-400 transition">
-        <i class="fa-solid fa-arrow-left mr-2"></i> 返回首页
-      </a>
-      <span class="text-sm text-slate-500">关于我们</span>
+  <nav class="fixed top-0 sm:top-6 left-0 right-0 z-50 px-2 sm:px-6 transition-all duration-300">
+    <div class="max-w-7xl mx-auto rounded-2xl border border-white/10 bg-[#020617]/80 backdrop-blur-2xl shadow-[0_0_40px_-10px_rgba(124,58,237,0.15)]">
+      <div class="px-6 h-16 sm:h-20 flex items-center justify-between">
+        <a aria-label="Gemini-VIP 首页" class="flex items-center gap-3 group" href="/">
+          <div class="relative w-8 h-8 flex items-center justify-center">
+            <div class="absolute inset-0 bg-purple-500/30 blur-lg rounded-full group-hover:bg-purple-500/50 transition"></div>
+            <svg aria-hidden="true" class="relative w-full h-full text-white drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="url(#nav-gradient)"></path>
+              <defs>
+                <lineargradient id="nav-gradient" x1="0" x2="24" y1="0" y2="24">
+                  <stop offset="0%" stop-color="#60A5FA"></stop>
+                  <stop offset="100%" stop-color="#C084FC"></stop>
+                </lineargradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="flex flex-col leading-none">
+            <span class="font-black text-xl tracking-tighter text-white group-hover:tracking-normal transition-all duration-500">
+              GEMINI-VIP<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-light ml-0.5">.TOP</span>
+            </span>
+          </div>
+        </a>
+        <div class="hidden md:flex items-center gap-10 bg-white/5 px-8 py-2.5 rounded-full border border-white/5">
+          <a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#pricing">
+            价格方案
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#features">
+            核心优势
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/blog/">
+            教程资源
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+          <a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#faq">
+            常见问题
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+          </a>
+        </div>
+        <div class="flex items-center gap-5">
+          <a class="relative group" href="/#pricing">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-70 blur group-hover:opacity-100 transition duration-200"></div>
+            <div class="relative px-6 py-2.5 bg-slate-900 rounded-full flex items-center gap-2 border border-white/10 group-hover:bg-slate-800 transition">
+              <span class="font-bold text-sm text-white">立即开通</span>
+              <i class="fa-solid fa-bolt text-yellow-400 text-xs animate-pulse"></i>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </nav>
 

@@ -11,15 +11,14 @@ def get_priority_urls():
     urls = []
     base_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # 1. 必推：核心页面
-    priority_pages = ["legal.html", "index.html"]
+    # 1. 必推：核心页面 (仅主页，作为权重核心)
+    priority_pages = ["index.html"]
     for page in priority_pages:
         if page == "index.html":
             urls.append(f"https://{HOST}/")
-        else:
-            # Clean URL: remove .html
-            clean_page = page.replace(".html", "")
-            urls.append(f"https://{HOST}/{clean_page}")
+            
+    # 1.1 必推：博客聚合页 (权重放大器，必须带斜杠)
+    urls.append(f"https://{HOST}/blog/")
             
     # 2. 选推：Blog 页面 (按修改时间排序，推最新的)
     blog_dir = os.path.join(base_dir, "blog")
@@ -27,7 +26,8 @@ def get_priority_urls():
     if os.path.exists(blog_dir):
         files = []
         for file in os.listdir(blog_dir):
-            if file.endswith(".html"):
+            # 跳过 index.html，因为已在上方作为核心页面添加
+            if file.endswith(".html") and file != "index.html":
                 full_path = os.path.join(blog_dir, file)
                 files.append((full_path, file))
         
@@ -35,12 +35,9 @@ def get_priority_urls():
         files.sort(key=lambda x: os.path.getmtime(x[0]), reverse=True)
         
         for _, file in files:
-            if file == "index.html":
-                blog_urls.append(f"https://{HOST}/blog/")
-            else:
-                # Clean URL: remove .html
-                clean_file = file.replace(".html", "")
-                blog_urls.append(f"https://{HOST}/blog/{clean_file}")
+            # Clean URL: remove .html
+            clean_file = file.replace(".html", "")
+            blog_urls.append(f"https://{HOST}/blog/{clean_file}")
 
     # 合并列表
     urls.extend(blog_urls)
