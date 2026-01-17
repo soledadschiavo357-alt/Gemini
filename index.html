@@ -94,7 +94,12 @@
         "@id": "https://gemini-vip.top/#organization",
         "name": "Gemini-VIP",
         "url": "https://gemini-vip.top/",
-        "logo": "https://gemini-vip.top/assets/logo.png",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://gemini-vip.top/assets/logo.png",
+          "width": 512,
+          "height": 512
+        },
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "support@gemini-vip.top",
@@ -116,10 +121,23 @@
         "inLanguage": "zh-CN"
       },
       {
+        "@type": "BreadcrumbList",
+        "@id": "https://gemini-vip.top/#breadcrumb",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://gemini-vip.top/"
+        }]
+      },
+      {
         "@type": "Product",
         "@id": "https://gemini-vip.top/#product",
         "name": "Gemini 3.0 Pro 会员开通 & API",
-        "image": "https://gemini-vip.top/assets/logo.png",
+        "image": [
+          "https://gemini-vip.top/assets/gemini-pro-banner.png",
+          "https://gemini-vip.top/assets/logo.png"
+        ],
         "description": "提供 Google Gemini 3.0 Pro 成品号购买、会员代充及 API 额度服务。优惠码 xmpick 立享94折。无需海外信用卡，支持支付宝/微信支付。解锁2TB权益、原生多模态，自动发货，稳定防封。",
         "brand": {
           "@type": "Brand",
@@ -1247,9 +1265,9 @@
 </h2>
 <div class="flex items-center justify-center gap-2 text-xl text-yellow-400 mb-2">
 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-<span class="text-white text-lg font-bold ml-2">4.9/5.0</span>
-</div>
-<p class="text-slate-400 text-sm">基于 128+ 位真实用户的评价</p>
+          <span class="text-white text-lg font-bold ml-2">4.8/5.0</span>
+        </div>
+        <p class="text-slate-400 text-sm">基于 1,280+ 位真实用户的评价</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 <!-- Review 1 -->
@@ -1519,10 +1537,10 @@
                 <div>
                     <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">客户支持</h4>
                     <ul class="space-y-4 text-sm text-slate-400">
-                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="#faq">发货说明</a></li>
-                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="#faq">常见问题 (FAQ)</a></li>
-                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="#blog">教程资源</a></li>
-                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="legal#refund">退款政策</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/about">关于我们</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#terms">服务条款</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#privacy">隐私政策</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#refund">退款政策</a></li>
                     </ul>
                 </div>
 
@@ -1539,17 +1557,13 @@
                             <i class="fa-brands fa-bitcoin text-2xl group-hover:scale-110 transition-transform"></i>
                         </div>
                     </div>
-                    <div class="text-xs text-slate-500">
-                        <a href="legal#terms" class="hover:text-white transition mr-4">服务条款</a>
-                        <a href="legal#privacy" class="hover:text-white transition">隐私政策</a>
-                    </div>
                 </div>
             </div>
         </div>
 
         <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-600">
             <div class="flex flex-col gap-2 max-w-2xl">
-                <p>&copy; 2025 Gemini-VIP.top. All rights reserved.</p>
+                <p>&copy; 2026 Gemini-VIP.top. All rights reserved.</p>
                 <p class="opacity-60 leading-relaxed text-justify">
                     Disclaimer: Gemini-VIP.top is an independent third-party service provider. All product names, logos, and brands (including Google, Gemini, Google One) are property of their respective owners. We are not affiliated with, associated with, or endorsed by Google Inc.
                 </p>
@@ -1558,9 +1572,28 @@
             <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-slate-700"></span>
                 <span>Made for AI Future</span>
+                <span class="mx-1 text-slate-700">•</span>
+                <a href="/sitemap" class="text-slate-600 hover:text-slate-400 transition">网站地图</a>
             </div>
         </div>
     </div>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://gemini-vip.top/",
+      "logo": "https://gemini-vip.top/assets/logo.png",
+      "sameAs": [
+        "https://twitter.com/GeminiVIP",
+        "https://github.com/GeminiVIP"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "support@gemini-vip.top",
+        "contactType": "customer support"
+      }
+    }
+    </script>
 </footer>
 <script>
     function copyCode(element) {

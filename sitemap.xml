@@ -1,92 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gemini-vip.top/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://gemini-vip.top/about</loc>
+    <lastmod>2026-01-17</lastmod>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://gemini-vip.top/legal</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://gemini-vip.top/blog/</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-17</lastmod>
     <priority>0.9</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://gemini-vip.top/sitemap</loc>
+    <lastmod>2026-01-17</lastmod>
+    <priority>0.4</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://gemini-vip.top/blog/gemini-pro-prompts</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-13</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gemini-vip.top/blog/gemini-version-guide</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-13</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gemini-vip.top/blog/gemini-region-error-fix</loc>
-    <lastmod>2026-01-14</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://gemini-vip.top/blog/gemini-student-discount</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-13</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gemini-vip.top/blog/how-to-use-gemini-3</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-06</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://gemini-vip.top/blog/gemini-veo-video-review</loc>
-    <lastmod>2026-01-14</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://gemini-vip.top/blog/is-gemini-worth-it</loc>
-    <lastmod>2026-01-14</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://gemini-vip.top/blog/guide-cn</loc>
-    <lastmod>2026-01-14</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://gemini-vip.top/blog/comparison</loc>
-    <lastmod>2026-01-14</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://gemini-vip.top/blog/benefits</loc>
-    <lastmod>2026-01-14</lastmod>
+    <loc>https://gemini-vip.top/blog/gemini-student-discount</loc>
+    <lastmod>2026-01-06</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gemini-vip.top/blog/choose-model-cn</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gemini-vip.top/blog/guide-cn</loc>
+    <lastmod>2026-01-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gemini-vip.top/blog/is-gemini-worth-it</loc>
+    <lastmod>2026-01-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gemini-vip.top/blog/comparison</loc>
+    <lastmod>2026-01-05</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://gemini-vip.top/blog/pro-vs-free</loc>
-    <lastmod>2026-01-14</lastmod>
+    <lastmod>2026-01-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gemini-vip.top/blog/gemini-veo-video-review</loc>
+    <lastmod>2026-01-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://gemini-vip.top/blog/benefits</loc>
+    <lastmod>2026-01-05</lastmod>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
   </url>
