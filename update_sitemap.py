@@ -12,7 +12,8 @@ POSTS_JSON = 'posts.json'
 
 h1_pattern = re.compile(r'<h1[^>]*>(.*?)</h1>', re.DOTALL)
 tag_pattern = re.compile(r'<[^>]+>')
-date_pattern = re.compile(r'(\d{4}-\d{2}-\d{2})')
+# 优先匹配 <time datetime="YYYY-MM-DD">
+time_tag_pattern = re.compile(r'<time[^>]*datetime="(\d{4}-\d{2}-\d{2})"')
 
 def main():
     posts = []
@@ -32,8 +33,13 @@ def main():
                 clean_title = tag_pattern.sub('', match.group(1))
                 title = ' '.join(clean_title.split())
             
-            date_match = date_pattern.search(content)
-            date_str = date_match.group(1) if date_match else datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d')
+            # 优先提取 <time> 标签中的日期，如果没有则使用文件修改时间
+            date_match = time_tag_pattern.search(content)
+            if date_match:
+                date_str = date_match.group(1)
+            else:
+                # Fallback: Use file modification time
+                date_str = datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d')
             
             slug = filename[:-5]
             url = f"{DOMAIN}/blog/{slug}"
@@ -70,17 +76,28 @@ def main():
         ET.SubElement(u, 'changefreq').text = 'weekly'
         
     xml_str = minidom.parseString(ET.tostring(urlset)).toprettyxml(indent="  ")
-    # remove the xml version line added by minidom if you want strict control, but usually it's fine.
-    # ET adds <?xml ... ?> if we use ElementTree.write, but minidom toprettyxml adds it too.
-    # Let's write it.
+    # XML
+    xml_str = minidom.parseString(ET.tostring(urlset)).toprettyxml(indent="  ")
     with open(SITEMAP_XML, 'w', encoding='utf-8') as f:
         f.write(xml_str)
+    print(f"✅ Updated {SITEMAP_XML}")
 
-    # HTML Snippet Output
-    print("--- HTML SNIPPET START ---")
+    # Update sitemap.html
+    update_sitemap_html(posts)
+
+def update_sitemap_html(posts):
+    sitemap_html_path = 'sitemap.html'
+    if not os.path.exists(sitemap_html_path):
+        print(f"⚠️ {sitemap_html_path} not found, skipping HTML update.")
+        return
+
+    # Generate HTML list items
+    list_items = []
     for post in posts:
+        # Relativize URL: https://gemini-vip.top/blog/foo -> /blog/foo
         rel_url = post['url'].replace(DOMAIN, '')
-        print(f'''            <li>
+        
+        item = f'''            <li>
               <a href="{rel_url}" class="flex items-start gap-3 text-slate-400 hover:text-white transition group hover-arrow">
                 <i class="fa-solid fa-file-lines mt-1 text-xs text-slate-600 group-hover:text-pink-400 transition"></i>
                 <div>
@@ -88,8 +105,30 @@ def main():
                   <span class="text-[10px] text-slate-600 font-mono">{post['date']}</span>
                 </div>
               </a>
-            </li>''')
-    print("--- HTML SNIPPET END ---")
+            </li>'''
+        list_items.append(item)
+    
+    new_list_html = '\n'.join(list_items)
+
+    with open(sitemap_html_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Regex to replace content inside <ul id="blog-posts" ...> ... </ul>
+    # We match the opening tag (with attributes), content, and closing tag.
+    # We keep the opening and closing tags, replacing the content.
+    pattern = r'(<ul id="blog-posts"[^>]*>).*?(</ul>)'
+    
+    def replace_list(match):
+        return f'{match.group(1)}\n{new_list_html}\n{match.group(2)}'
+        
+    new_content, count = re.subn(pattern, replace_list, content, flags=re.DOTALL)
+    
+    if count > 0:
+        with open(sitemap_html_path, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f"✅ Updated {sitemap_html_path} with {len(posts)} posts.")
+    else:
+        print(f"⚠️ Could not find <ul id=\"blog-posts\"> in {sitemap_html_path}")
 
 if __name__ == "__main__":
     main()

@@ -1,80 +1,144 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="zh-CN">
+
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
 <title>Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比 - Gemini-VIP.top</title>
 <meta content="Gemini 3.0 Pro, Flash, 2.5 Pro 哪个模型更强？本文深度对比各大版本差异，提供免费版与Pro版的选择建议，以及安全使用指南。" name="description"/>
 <meta content="Gemini版本对比, Gemini 3.0 Pro, Gemini Flash, Gemini 2.5, Gemini免费版, Gemini模型区别, Gemini使用教程" name="keywords"/>
-<meta content="Gemini-VIP" name="author"/>
 <link href="https://gemini-vip.top/blog/gemini-version-guide" rel="canonical"/>
+
+<meta content="zh-CN" http-equiv="content-language"/>
+<meta content="global" name="distribution" />
+
 <meta content="Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比" property="og:title"/>
-<meta content="深度解析 Gemini 3.0 Pro, Flash 与 2.5 的区别，教你如何根据需求选择最合适的 AI 模型。" property="og:description"/>
+<meta content="Gemini 3.0 Pro, Flash, 2.5 Pro 哪个模型更强？本文深度对比各大版本差异，提供免费版与Pro版的选择建议，以及安全使用指南。" property="og:description"/>
 <meta content="article" property="og:type"/>
 <meta content="https://gemini-vip.top/blog/gemini-version-guide" property="og:url"/>
 <meta content="https://gemini-vip.top/assets/logo.png" property="og:image"/>
 <meta content="Gemini-VIP.top" property="og:site_name"/>
+<meta content="zh_CN" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比" name="twitter:title"/>
-<meta content="深度解析 Gemini 3.0 Pro, Flash 与 2.5 的区别，教你如何根据需求选择最合适的 AI 模型。" name="twitter:description"/>
+<meta content="Gemini 3.0 Pro, Flash, 2.5 Pro 哪个模型更强？本文深度对比各大版本差异，提供免费版与Pro版的选择建议，以及安全使用指南。" name="twitter:description"/>
 <meta content="https://gemini-vip.top/assets/logo.png" name="twitter:image"/>
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比",
-    "description": "Gemini 3.0 Pro, Flash, 2.5 Pro 哪个模型更强？本文深度对比各大版本差异，提供免费版与Pro版的选择建议。",
-    "author": {"@type": "Organization", "name": "Gemini-VIP", "logo": {"@type": "ImageObject", "url": "https://gemini-vip.top/assets/logo.png", "width": 512, "height": 512}},
-    "image": "https://gemini-vip.top/assets/logo.png",
-    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://gemini-vip.top/blog/gemini-version-guide"},
-    "inLanguage": "zh-CN",
-    "datePublished": "2026-01-13",
-    "dateModified": "2026-01-13"
-  }
-  </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@id": "https://gemini-vip.top/",
-        "name": "首页"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@id": "https://gemini-vip.top/blog/",
-        "name": "教程资源"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@id": "https://gemini-vip.top/blog/gemini-version-guide",
-        "name": "Gemini 哪个版本最好用？ 3.0 Pro, Flash, 2.5 全面对比"
-      }
-    }
-  ]
-}
-</script>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-<style>body { font-family: system-ui, -apple-system, sans-serif; }</style>
+<!-- Social Extra -->
+<meta content="@GeminiVIP" name="twitter:site"/>
+<meta content="@GeminiVIP" name="twitter:creator"/>
 <!-- Favicon & App Icon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="shortcut icon" href="/assets/favicon.ico">
+<!-- Hreflang -->
+<link href="https://gemini-vip.top/blog/gemini-version-guide" hreflang="zh-CN" rel="alternate"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; font-family: 'Inter', sans-serif; }
+
+    .gemini-bg {
+      background-color: #020617;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.18), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.18), transparent 25%);
+    }
+
+    .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.25); }
+
+    .bg-noise { background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; }
+
+    /* 动画类 */
+    .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
+    .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse 6s ease-in-out infinite; }
+    .animate-gradient-xy { animation: gradient-xy 8s ease infinite; }
+    .group-hover\/btn\:animate-shine:hover { animation: shine 0.75s; }
+
+    /* 进场动画 */
+    .reveal-hero { opacity: 0; filter: blur(20px); transform: scale(0.9) translateY(40px); transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity, filter; }
+    .reveal { opacity: 0; filter: blur(8px); transform: translateY(30px) scale(0.98); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity, filter; }
+    .reveal.active, .reveal-hero.active { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+
+    /* 延迟工具类 */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+
+    /* 关键帧动画 */
+    @keyframes gradient-x { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes float { 0%, 100% { transform: translateY(0px) rotate(3deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
+    @keyframes shine { 100% { left: 125%; } }
+    @keyframes gradient-xy { 0%{filter:hue-rotate(0deg)} 50%{filter:hue-rotate(30deg)} 100%{filter:hue-rotate(0deg)} }
+    @keyframes scan { 0%, 100% { top: 0%; opacity: 0; } 10% { opacity: 1; } 50% { top: 90%; } 90% { opacity: 1; } }
+  </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+
+    <meta property="article:published_time" content="2026-01-13" />
+    <meta property="article:author" content="Gemini-VIP" />
+    <meta property="article:section" content="版本指南" />
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比",
+  "description": "Gemini 3.0 Pro, Flash, 2.5 Pro 哪个模型更强？本文深度对比各大版本差异，提供免费版与Pro版的选择建议，以及安全使用指南。",
+  "datePublished": "2026-01-13",
+  "dateModified": "2026-01-13",
+  "url": "https://gemini-vip.top/blog/gemini-version-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Gemini-VIP",
+    "url": "https://gemini-vip.top/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gemini-VIP",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gemini-vip.top/assets/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gemini-vip.top/blog/gemini-version-guide"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://gemini-vip.top/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "教程资源",
+        "item": "https://gemini-vip.top/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比",
+        "item": "https://gemini-vip.top/blog/gemini-version-guide"
+      }
+    ]
+  }
+}
+</script>
 </head>
-<body class="bg-[#020617] text-slate-300 min-h-screen selection:bg-purple-500 selection:text-white">
+<body class="gemini-bg min-h-screen text-slate-200 selection:bg-purple-500 selection:text-white">
 <nav class="fixed top-0 sm:top-6 left-0 right-0 z-50 px-2 sm:px-6 transition-all duration-300">
 <div class="max-w-7xl mx-auto rounded-2xl border border-white/10 bg-[#020617]/80 backdrop-blur-2xl shadow-[0_0_40px_-10px_rgba(124,58,237,0.15)]">
 <div class="px-6 h-16 sm:h-20 flex items-center justify-between">
@@ -127,19 +191,16 @@
 </div>
 </div>
 </nav>
-<div class="min-h-screen flex flex-col">
-<main class="flex-1 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<main class="flex-1 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
 <article class="lg:col-span-2">
 <header class="mb-12 text-center">
-<div class="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold mb-4">选型指南</div>
-<nav aria-label="Breadcrumb" class="overflow-x-auto whitespace-nowrap mb-6">
+<nav aria-label="Breadcrumb" class="overflow-x-auto whitespace-nowrap mb-6 mt-12">
 <ol class="flex items-center gap-2 text-sm text-slate-400">
-<li><a href="/" class="hover:text-white transition">首页</a></li>
+<li><a class="hover:text-white transition" href="/">首页</a></li>
 <li><span class="mx-1">/</span></li>
-<li><a href="/blog/" class="hover:text-white transition">教程资源</a></li>
+<li><a class="hover:text-white transition" href="/blog/">教程资源</a></li>
 <li><span class="mx-1">/</span></li>
-<li class="text-white font-medium" aria-current="page">Gemini 哪个版本最好用？ 3.0 Pro, Flash, 2.5 全面对比</li>
+<li aria-current="page" class="text-white font-medium">Gemini 哪个版本最好用？3.0 Pro, Flash, 2.5 全面对比</li>
 </ol>
 </nav>
 <h1 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
@@ -160,7 +221,6 @@
 </header>
 <div class="prose prose-invert prose-lg mx-auto">
 <p>选择 Gemini 的哪个版本，主要取决于你的具体需求和预算。简单来说，<strong>免费版适合日常简单使用，而 Pro 版则在处理复杂任务和高频创作上优势明显。</strong> 此外，不同的模型（3.0 vs Flash vs 2.5）也有各自的性格和特长。</p>
-
 <h2 class="text-2xl font-bold text-white mt-12 mb-6">第一关：免费版 vs Pro 版</h2>
 <p>这是最基础的选择。如果你只是偶尔聊聊天，免费版足矣；但如果你需要生产力工具，Pro 版是必须的。</p>
 <ul class="space-y-4 mt-4">
@@ -178,43 +238,35 @@
     </span>
 </li>
 </ul>
-
 <h2 class="text-2xl font-bold text-white mt-12 mb-6">第二关：模型大比拼 (3.0 Pro / Flash / 2.5)</h2>
 <p>除了付费等级，Gemini 还有不同的模型版本，主要影响<strong>响应速度</strong>和<strong>输出风格</strong>：</p>
-
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
 <div class="bg-slate-800/50 p-5 rounded-xl border border-white/10">
 <h3 class="text-lg font-bold text-white mb-2">Gemini 3.0 (Pro)</h3>
 <div class="text-xs text-purple-400 font-bold mb-3 uppercase tracking-wider">最聪明 · 主流推荐</div>
 <p class="text-sm text-slate-400">目前最主流的版本，被许多用户认为是“最聪明”的。尤其在学术和科研领域表现出色，能提供深入分析。但在极长对话中，偶尔会“忘记”上下文。</p>
 </div>
-
 <div class="bg-slate-800/50 p-5 rounded-xl border border-white/10">
 <h3 class="text-lg font-bold text-white mb-2">Gemini 3.0 (Flash)</h3>
 <div class="text-xs text-yellow-400 font-bold mb-3 uppercase tracking-wider">速度快 · 简洁</div>
 <p class="text-sm text-slate-400">回复速度极快，思考过程简化。输出风格朴实、直接，少了些“话痨”感。如果你追求快速获取答案，选它准没错。</p>
 </div>
-
 <div class="bg-slate-800/50 p-5 rounded-xl border border-white/10 md:col-span-2">
 <h3 class="text-lg font-bold text-white mb-2">Gemini 2.5 (Pro)</h3>
 <div class="text-xs text-slate-500 font-bold mb-3 uppercase tracking-wider">上一代 · 已过时</div>
 <p class="text-sm text-slate-400">虽然曾经表现优异，但在长对话中容易“崩溃”或分不清现实与虚拟。相比之下，Gemini 3.0 在情绪稳定性和互动惊喜感上更胜一筹。</p>
 </div>
 </div>
-
 <h2 class="text-2xl font-bold text-white mt-12 mb-6">如何开始使用？</h2>
 <p>在部分受限地区使用 Gemini，通常有两种途径：</p>
-
 <h3 class="text-xl font-bold text-white mt-8 mb-4">1. 浏览器扩展 (轻量级)</h3>
 <p>可以在 Edge 或 Chrome 浏览器中安装如“DeepSider”或“Sider”侧边栏扩展。安装后即可在侧边栏调用 Gemini 3.0 进行对话。</p>
 <div class="bg-yellow-500/10 border border-yellow-500/20 p-4 rounded-xl mt-2 flex gap-3">
 <i class="fa-solid fa-triangle-exclamation text-yellow-400 mt-1"></i>
 <div class="text-sm text-slate-400"><strong>注意安全性：</strong> 使用第三方扩展时，请注意数据隐私风险，避免在对话中发送敏感个人信息。</div>
 </div>
-
 <h3 class="text-xl font-bold text-white mt-8 mb-4">2. 使用成品号 (稳定推荐)</h3>
 <p>如果你需要完整体验 <strong>Gemini Advanced (Pro)</strong> 的所有功能（包括 2TB 空间、Gmail、Docs 集成等），直接购买成品号是最安全、稳定的选择。</p>
-
 <div class="my-6 p-6 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-2xl border border-blue-500/30">
 <h3 class="text-xl font-bold text-white mb-2">Gemini-VIP 成品号优势：</h3>
 <ul class="list-disc pl-5 space-y-2 text-slate-300">
@@ -228,7 +280,6 @@
 </a>
 </div>
 </div>
-
 </div>
 </article>
 <aside class="lg:col-span-1 relative">
@@ -259,35 +310,49 @@
 <div class="mt-4 text-center"><span class="text-[10px] text-slate-600 flex items-center justify-center gap-1"><i class="fa-solid fa-shield-halved"></i> 7天质保 · 售后无忧</span></div>
 </div>
 </div>
-
 </div>
 </aside>
 </div>
-<div class="mt-16">
-<h3 class="text-xl font-bold text-white mb-6">相关文章推荐</h3>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-<a class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition" href="pro-vs-free">
-<div class="h-28 rounded-xl bg-gradient-to-br from-emerald-600/20 to-blue-600/20 flex items-center justify-center text-emerald-400 mb-3"><i class="fa-solid fa-toggle-on text-3xl"></i></div>
-<div class="text-white font-bold">免费版 vs Pro：怎么选？</div>
-<div class="text-slate-500 text-xs mt-1">深度权益对比</div>
-</a>
-<a class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition" href="guide-cn">
-<div class="h-28 rounded-xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center text-blue-400 mb-3"><i class="fa-solid fa-book-open text-3xl"></i></div>
-<div class="text-white font-bold">中文用户怎么使用 Gemini 3.0 Pro？</div>
-<div class="text-slate-500 text-xs mt-1">新手入门保姆级教程</div>
-</a>
-<a class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition" href="gemini-region-error-fix">
-<div class="h-28 rounded-xl bg-gradient-to-br from-red-600/20 to-orange-600/20 flex items-center justify-center text-red-400 mb-3"><i class="fa-solid fa-triangle-exclamation text-3xl"></i></div>
-<div class="text-white font-bold">Gemini 地区不支持怎么办？</div>
-<div class="text-slate-500 text-xs mt-1">3招解决报错问题</div>
-</a>
-<a class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition" href="choose-model-cn">
-<div class="h-28 rounded-xl bg-gradient-to-br from-emerald-600/20 to-blue-600/20 flex items-center justify-center text-emerald-400 mb-3"><i class="fa-solid fa-compass text-3xl"></i></div>
-<div class="text-white font-bold">Gemini 还是 GPT-4？场景选型指南</div>
-<div class="text-slate-500 text-xs mt-1">按需选择，事半功倍</div>
-</a>
-</div>
-</div>
+
+        <div class="mt-16 border-t border-white/10 pt-10">
+          <h3 class="text-xl font-bold text-white mb-6">相关文章推荐</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="guide-cn" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-teal-600/20 to-purple-600/20 flex items-center justify-center text-teal-400 mb-3">
+                <i class="fa-solid fa-language text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini会员开通_Gemini 3.0 Pro账号购买_代充价格与权益(自动发货)</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+            <a href="is-gemini-worth-it" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-cyan-600/20 to-blue-600/20 flex items-center justify-center text-cyan-400 mb-3">
+                <i class="fa-solid fa-scale-balanced text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini会员值不值得买？2026年最全性价比分析与避坑指南</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+            <a href="comparison" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-yellow-600/20 to-orange-600/20 flex items-center justify-center text-yellow-400 mb-3">
+                <i class="fa-solid fa-not-equal text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini会员开通_Gemini 3.0 Pro账号购买_代充价格与权益(自动发货)</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+            <a href="pro-vs-free" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-green-600/20 to-emerald-600/20 flex items-center justify-center text-green-400 mb-3">
+                <i class="fa-solid fa-circle-half-stroke text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini会员开通_Gemini 3.0 Pro账号购买_代充价格与权益(自动发货)</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+          </div>
+        </div>
+        
 </main>
 <footer class="relative border-t border-white/10 bg-[#020617] pt-20 pb-10 overflow-hidden">
     <div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[128px] pointer-events-none"></div>
@@ -385,52 +450,52 @@
             </div>
         </div>
     </div>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "url": "https://gemini-vip.top/",
-      "logo": "https://gemini-vip.top/assets/logo.png",
-      "sameAs": [
-        "https://twitter.com/GeminiVIP",
-        "https://github.com/GeminiVIP"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "support@gemini-vip.top",
-        "contactType": "customer support"
-      }
-    }
-    </script>
 </footer>
-</div>
-
 <script>
     function copyCode(element) {
-      const code = 'xmpick';
+      const code = 'xmpick'
       navigator.clipboard.writeText(code).then(() => {
-        const toast = document.createElement('div');
-        toast.className = 'fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-xl shadow-2xl z-50 animate-bounce-in flex items-center gap-2 font-bold';
-        toast.innerHTML = '<i class="fa-solid fa-check-circle"></i> 优惠码 xmpick 已复制';
-        document.body.appendChild(toast);
         if (element) {
-          const icon = element.querySelector('i');
-          if (icon) {
-            icon.className = 'fa-solid fa-check text-green-400';
-            setTimeout(() => icon.className = 'fa-regular fa-copy text-slate-400 hover:text-white transition', 2000);
-          }
+          const originalHTML = element.innerHTML
+          const originalClass = element.className
+          element.innerHTML = '<i class="fa-solid fa-check"></i> <span>✅ 已复制!</span>'
+          element.className = originalClass.replace(/bg-[^\s]+/g, '') + ' bg-green-500 text-white'
+          setTimeout(() => {
+            element.innerHTML = originalHTML
+            element.className = originalClass
+          }, 2000)
+        } else {
+          const toast = document.createElement('div')
+          toast.style.position = 'fixed'
+          toast.style.bottom = '24px'
+          toast.style.right = '24px'
+          toast.style.zIndex = '9999'
+          toast.className = 'px-4 py-2 rounded-lg bg-green-600 text-white text-sm shadow-lg'
+          toast.textContent = '优惠码已复制：xmpick'
+          document.body.appendChild(toast)
+          setTimeout(() => { toast.remove() }, 2000)
         }
-        setTimeout(() => { toast.remove(); }, 2000);
-      });
+      })
     }
   </script>
-<style>
-    @keyframes bounce-in {
-      0% { transform: translateY(100%); opacity: 0; }
-      50% { transform: translateY(-10%); opacity: 1; }
-      100% { transform: translateY(0); }
-    }
-    .animate-bounce-in { animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
-  </style>
+<script>
+    // 只保留视觉动效，滚动交给浏览器原生
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // 动画只播一次
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // 选取所有需要动效的元素
+      document.querySelectorAll('section, h2, .glass-card, footer').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>

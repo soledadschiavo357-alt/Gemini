@@ -100,6 +100,14 @@
 
   <main class="flex-grow pt-32 pb-24 px-6">
     <div class="max-w-7xl mx-auto">
+
+      <nav aria-label="Breadcrumb" class="overflow-x-auto whitespace-nowrap mb-6 mt-12">
+        <ol class="flex items-center gap-2 text-sm text-slate-400">
+          <li><a class="hover:text-white transition" href="/">首页</a></li>
+          <li><span class="mx-1">/</span></li>
+          <li aria-current="page" class="text-white font-medium">网站地图</li>
+        </ol>
+      </nav>
       
       <h1 class="text-4xl font-bold text-white mb-12 text-center md:text-left">
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Sitemap</span> / 索引
@@ -185,6 +193,15 @@
             <i class="fa-solid fa-newspaper text-pink-400"></i> 最新文章
           </h2>
           <ul id="blog-posts" class="space-y-4 max-h-72 overflow-y-auto custom-scrollbar pr-2">
+            <li>
+              <a href="/blog/gemini-membership-guide" class="flex items-start gap-3 text-slate-400 hover:text-white transition group hover-arrow">
+                <i class="fa-solid fa-file-lines mt-1 text-xs text-slate-600 group-hover:text-pink-400 transition"></i>
+                <div>
+                  <span class="block text-sm font-medium group-hover:underline decoration-pink-500/50 underline-offset-4 decoration-1 transition">Gemini 会员购买全攻略： 学生优惠、家庭组与成品号对比</span>
+                  <span class="text-[10px] text-slate-600 font-mono">2026-01-18</span>
+                </div>
+              </a>
+            </li>
             <li>
               <a href="/blog/gemini-pro-prompts" class="flex items-start gap-3 text-slate-400 hover:text-white transition group hover-arrow">
                 <i class="fa-solid fa-file-lines mt-1 text-xs text-slate-600 group-hover:text-pink-400 transition"></i>
@@ -293,7 +310,7 @@
                 </div>
               </a>
             </li>
-          </ul>
+</ul>
         </div>
 
       </div>
