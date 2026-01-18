@@ -15,7 +15,7 @@ def get_all_urls():
     
     # 1. 扫描根目录 HTML
     for file in os.listdir(base_dir):
-        if file.endswith(".html") and file != "404.html" and file != "design.html":
+        if file.endswith(".html") and file not in ["404.html", "design.html", "layout_template.html"]:
             if file == "index.html":
                 urls.append(f"https://{HOST}/")
             else:
