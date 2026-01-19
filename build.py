@@ -752,6 +752,14 @@ def scan_and_build_homepage(all_posts):
         print("Warning: CollectionPage JSON-LD block not found. Inserting new one.")
         if '</head>' in new_content:
              new_content = new_content.replace('</head>', f'{new_script_block}\n</head>')
+    
+    # --- Update Hreflang for Blog Index ---
+    print("Updating Hreflang for Blog Index...")
+    new_content = re.sub(
+        r'<link href="[^"]*" hreflang="zh-CN" rel="alternate"/>', 
+        '<link href="https://gemini-vip.top/blog/" hreflang="zh-CN" rel="alternate"/>', 
+        new_content
+    )
     # --------------------------------------
 
     with open(index_file, 'w', encoding='utf-8') as f:
