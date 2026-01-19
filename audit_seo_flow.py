@@ -161,13 +161,18 @@ def main():
             for href in parser.links:
                 # 1. Dirty Check
                 is_dirty = False
+                dirty_msg = href
+                
                 if href.endswith('.html') and not href.startswith(('http', '#', 'mailto')):
                      is_dirty = True
-                if '../' in href:
+                elif '../' in href:
                      is_dirty = True
+                elif not href.startswith('/') and not href.startswith(('http', '#', 'mailto', 'javascript:', 'tel:')):
+                     is_dirty = True
+                     dirty_msg = f"⚠️ Risky Relative Path: href=\"{href}\""
                 
                 if is_dirty:
-                    dirty_links.append((os.path.basename(f), href))
+                    dirty_links.append((os.path.basename(f), dirty_msg))
                 
                 # 2. Build Graph
                 
@@ -225,7 +230,7 @@ def main():
         print("  ✅ No orphan pages found.")
 
     # 2. Dirty URL Check
-    print("\n⚠️ Dirty URL Check (Contains .html or ../):")
+    print("\n⚠️ Dirty URL Check (Contains .html, ../, or Relative Path):")
     if dirty_links:
         for src, link in dirty_links:
             print(f"  - In {src}: {link}")

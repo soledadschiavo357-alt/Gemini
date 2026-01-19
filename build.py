@@ -199,7 +199,7 @@ def generate_related_posts_html(related_posts, style_db):
         
         # HTML Template (Small Card Style - as requested)
         card_html = f'''
-    <a class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition" href="{url}">
+    <a class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition" href="/blog/{url}">
       <div class="h-28 rounded-xl bg-gradient-to-br from-{color}-600/20 to-{secondary_color}-600/20 flex items-center justify-center text-{color}-400 mb-3">
         <i class="fa-solid {icon} text-3xl"></i>
       </div>
@@ -214,6 +214,7 @@ def generate_related_posts_html(related_posts, style_db):
     return html
 
 def sanitize_links(html_content):
+    # 1. Handle ../index specific cases (Legacy priority)
     def replace_relative_index(match):
         anchor = match.group(1) or ''
         return f'href="/{anchor}"'
@@ -221,20 +222,38 @@ def sanitize_links(html_content):
     html_content = re.sub(r'href="(?:\.\./)+index\.html(#[^"]*)?"', replace_relative_index, html_content)
     html_content = re.sub(r'href="(?:\.\./)+index(#[^"]*)?"', replace_relative_index, html_content)
 
-    def remove_html_ext(match):
+    # 2. General Link Sanitizer
+    def general_fix(match):
         url = match.group(1)
-        if url.startswith(('http:', 'https:', 'mailto:', 'tel:', '//', '#')):
-            return match.group(0)
-        return f'href="{url}"'
-
-    html_content = re.sub(r'href="([^"]+)\.html"', remove_html_ext, html_content)
-    
-    def resolve_parent_refs(match):
-        path = match.group(1)
-        return f'href="/{path}"'
         
-    html_content = re.sub(r'href="\.\./([^"]+)"', resolve_parent_refs, html_content)
+        # Skip external/special/absolute
+        if url.startswith(('http:', 'https:', 'mailto:', 'tel:', '//', '#', 'javascript:', 'data:', '/')):
+            return match.group(0)
+            
+        # Handle parent refs ../
+        if url.startswith('../'):
+             # Strip .html if present
+             if url.endswith('.html'):
+                 url = url[:-5]
+             
+             # Resolve parent ref: ../foo -> /foo
+             clean_path = url.replace('../', '')
+             if clean_path == 'index': return 'href="/"'
+             return f'href="/{clean_path}"'
+        
+        # Handle current dir (blog/) refs
+        # Strip .html if present
+        if url.endswith('.html'):
+            url = url[:-5]
+            
+        if url == 'index':
+            return 'href="/blog/"'
+            
+        return f'href="/blog/{url}"'
+
+    html_content = re.sub(r'href="([^"]+)"', general_fix, html_content)
     
+    # 3. Canonical Link Fix
     def fix_canonical(match):
         url = match.group(1)
         return f'<link href="{url}" rel="canonical"/>'
@@ -419,7 +438,7 @@ def process_file(filepath, template_content, all_posts):
              secondary_color = GRADIENT_MAP.get(color, 'purple')
              
              cards_html += f'''
-            <a href="{p['url']}" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+            <a href="/blog/{p['url']}" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
               <div class="h-28 rounded-xl bg-gradient-to-br from-{color}-600/20 to-{secondary_color}-600/20 flex items-center justify-center text-{color}-400 mb-3">
                 <i class="fa-solid {icon} text-3xl"></i>
               </div>
@@ -634,7 +653,7 @@ def scan_and_build_homepage(all_posts):
         
         card_html = f'''
         <article class="h-full" data-category="{category}">
-          <a class="group block h-full" href="{url}">
+          <a class="group block h-full" href="/blog/{url}">
             <div class="bg-slate-900/50 border border-white/10 rounded-2xl overflow-hidden h-full hover:border-{color}-500/50 hover:shadow-[0_0_30px_rgba({rgba},0.15)] transition-all duration-300 flex flex-col">
               <div class="h-48 bg-slate-800 relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-br from-{color}-600/20 via-slate-900/50 to-{secondary_color}-600/20 group-hover:scale-105 transition duration-700"></div>
@@ -779,7 +798,7 @@ def update_root_homepage(all_posts):
     
     grid_html = ''
     for post in sorted_posts:
-        url = f"blog/{post['url']}" # Prepend blog/ for root index
+        url = f"/blog/{post['url']}" # Prepend /blog/ for root index
         title = post['title']
         summary = post.get('summary', '')
         if not summary:
