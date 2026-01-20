@@ -227,8 +227,8 @@ def sanitize_links(html_content):
     def general_fix(match):
         url = match.group(1)
         
-        # Skip external/special/absolute
-        if url.startswith(('http:', 'https:', 'mailto:', 'tel:', '//', '#', 'javascript:', 'data:', '/')):
+        # Skip external/special/absolute/placeholders
+        if url.startswith(('http:', 'https:', 'mailto:', 'tel:', '//', '#', 'javascript:', 'data:', '/', '{{')):
             return match.group(0)
             
         # Handle parent refs ../
@@ -600,21 +600,52 @@ def process_file(filepath, template_content, all_posts):
     # --- Final Variable Replacement (Fix for {{ title }} bug) ---
     var_title = ''
     var_desc = ''
+    var_kw = ''
+    var_canon = ''
     
     if current_post:
         var_title = current_post['title']
         var_desc = current_post['summary']
+        if current_post['tags']:
+            var_kw = ', '.join(current_post['tags'])
+        var_canon = f"https://gemini-vip.top/blog/{current_post['url']}"
     else:
         # Fallback for pages not in all_posts (like index.html)
         if src_title:
             var_title = src_title.group(1).split(' - ')[0]
         if src_desc:
             var_desc = src_desc.group(1)
+        if src_kw:
+            # Extract content from src_kw tag
+            m = re.search(r'content="([^"]*)"', src_kw.group(0))
+            if m: var_kw = m.group(1)
+        if src_canon:
+            m = re.search(r'href="([^"]*)"', src_canon.group(0))
+            if m: var_canon = m.group(1)
 
     if var_title:
         new_content = new_content.replace('{{ title }}', var_title)
     if var_desc:
         new_content = new_content.replace('{{ description }}', var_desc)
+    if var_kw:
+        new_content = new_content.replace('{{ keywords }}', var_kw)
+    else:
+         # Clean up empty placeholder if no keywords
+        new_content = new_content.replace('{{ keywords }}', '')
+        
+    if var_canon:
+        # Ensure canonical is full URL or absolute path
+        if not var_canon.startswith('http'):
+             if not var_canon.startswith('/'):
+                 var_canon = '/' + var_canon
+             var_canon = f"https://gemini-vip.top{var_canon}"
+        new_content = new_content.replace('{{ canonical }}', var_canon)
+    else:
+         # Fallback to current URL if no canonical provided
+         if current_post:
+             new_content = new_content.replace('{{ canonical }}', f"https://gemini-vip.top/blog/{current_post['url']}")
+         else:
+             new_content = new_content.replace('{{ canonical }}', '')
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(new_content)
