@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Gemini 做 PPT 神器：6套高质量提示词模板，复制即用</title>
+<meta content="觉得 Gemini 生成的 PPT 不好看？试试这 6 套经过验证的提示词模板，涵盖 Bento Grid、极简主义、瑞士国际主义等多种风格，让你的演示文稿瞬间专业起来。" name="description"/>
+<meta content="Gemini PPT, AI做PPT, Gemini Canvas, 提示词模板, Bento Grid, 极简风格, PPT设计, AI办公" name="keywords"/>
+<link href="https://gemini-vip.top/blog/gemini-ppt-prompts" rel="canonical"/>
+
+<meta content="zh-CN" http-equiv="content-language"/>
+<meta content="global" name="distribution" />
+
+<meta content="Gemini 做 PPT 神器： 6套高质量提示词模板，复制即用" property="og:title"/>
+<meta content="觉得 Gemini 生成的 PPT 不好看？试试这 6 套经过验证的提示词模板，涵盖 Bento Grid、极简主义、瑞士国际主义等多种风格，让你的演示文稿瞬间专业起来。" property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://gemini-vip.top/blog/gemini-ppt-prompts" property="og:url"/>
+<meta content="https://gemini-vip.top/assets/logo.png" property="og:image"/>
+<meta content="Gemini-VIP.top" property="og:site_name"/>
+<meta content="zh_CN" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Gemini 做 PPT 神器： 6套高质量提示词模板，复制即用" name="twitter:title"/>
+<meta content="觉得 Gemini 生成的 PPT 不好看？试试这 6 套经过验证的提示词模板，涵盖 Bento Grid、极简主义、瑞士国际主义等多种风格，让你的演示文稿瞬间专业起来。" name="twitter:description"/>
+<meta content="https://gemini-vip.top/assets/logo.png" name="twitter:image"/>
+<!-- Social Extra -->
+<meta content="@GeminiVIP" name="twitter:site"/>
+<meta content="@GeminiVIP" name="twitter:creator"/>
+<!-- Favicon & App Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/android-chrome-192x192.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" href="/assets/favicon.ico">
+<!-- Hreflang -->
+<link href="https://gemini-vip.top/blog/gemini-ppt-prompts" hreflang="zh-CN" rel="alternate"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; font-family: 'Inter', sans-serif; }
+
+    .gemini-bg {
+      background-color: #020617;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.18), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.18), transparent 25%);
+    }
+
+    .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.25); }
+
+    .bg-noise { background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; }
+
+    /* 动画类 */
+    .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
+    .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse 6s ease-in-out infinite; }
+    .animate-gradient-xy { animation: gradient-xy 8s ease infinite; }
+    .group-hover\/btn\:animate-shine:hover { animation: shine 0.75s; }
+
+    /* 进场动画 */
+    .reveal-hero { opacity: 0; filter: blur(20px); transform: scale(0.9) translateY(40px); transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity, filter; }
+    .reveal { opacity: 0; filter: blur(8px); transform: translateY(30px) scale(0.98); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity, filter; }
+    .reveal.active, .reveal-hero.active { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+
+    /* 延迟工具类 */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+
+    /* 关键帧动画 */
+    @keyframes gradient-x { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes float { 0%, 100% { transform: translateY(0px) rotate(3deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
+    @keyframes shine { 100% { left: 125%; } }
+    @keyframes gradient-xy { 0%{filter:hue-rotate(0deg)} 50%{filter:hue-rotate(30deg)} 100%{filter:hue-rotate(0deg)} }
+    @keyframes scan { 0%, 100% { top: 0%; opacity: 0; } 10% { opacity: 1; } 50% { top: 90%; } 90% { opacity: 1; } }
+  </style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+
+    <meta property="article:published_time" content="2026-01-21" />
+    <meta property="article:author" content="Gemini-VIP" />
+    <meta property="article:section" content="Prompt教程" />
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gemini 做 PPT 神器： 6套高质量提示词模板，复制即用",
+  "description": "觉得 Gemini 生成的 PPT 不好看？试试这 6 套经过验证的提示词模板，涵盖 Bento Grid、极简主义、瑞士国际主义等多种风格，让你的演示文稿瞬间专业起来。",
+  "datePublished": "2026-01-21",
+  "dateModified": "2026-01-21",
+  "url": "https://gemini-vip.top/blog/gemini-ppt-prompts",
+  "author": {
+    "@type": "Organization",
+    "name": "Gemini-VIP",
+    "url": "https://gemini-vip.top/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gemini-VIP",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gemini-vip.top/assets/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gemini-vip.top/blog/gemini-ppt-prompts"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://gemini-vip.top/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "教程资源",
+        "item": "https://gemini-vip.top/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Gemini 做 PPT 神器： 6套高质量提示词模板，复制即用",
+        "item": "https://gemini-vip.top/blog/gemini-ppt-prompts"
+      }
+    ]
+  }
+}
+</script>
+</head>
+<body class="gemini-bg min-h-screen text-slate-200 selection:bg-purple-500 selection:text-white">
+<nav class="fixed top-0 sm:top-6 left-0 right-0 z-50 px-2 sm:px-6 transition-all duration-300">
+<div class="max-w-7xl mx-auto rounded-2xl border border-white/10 bg-[#020617]/80 backdrop-blur-2xl shadow-[0_0_40px_-10px_rgba(124,58,237,0.15)]">
+<div class="px-6 h-16 sm:h-20 flex items-center justify-between">
+<a aria-label="Gemini-VIP 首页" class="flex items-center gap-3 group" href="/">
+<div class="relative w-8 h-8 flex items-center justify-center">
+<div class="absolute inset-0 bg-purple-500/30 blur-lg rounded-full group-hover:bg-purple-500/50 transition"></div>
+<svg aria-hidden="true" class="relative w-full h-full text-white drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="url(#nav-gradient)"></path>
+<defs>
+<lineargradient id="nav-gradient" x1="0" x2="24" y1="0" y2="24">
+<stop offset="0%" stop-color="#60A5FA"></stop>
+<stop offset="100%" stop-color="#C084FC"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="flex flex-col leading-none">
+<span class="font-black text-xl tracking-tighter text-white group-hover:tracking-normal transition-all duration-500">
+              GEMINI-VIP<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-light ml-0.5">.TOP</span>
+</span>
+</div>
+</a>
+<div class="hidden md:flex items-center gap-10 bg-white/5 px-8 py-2.5 rounded-full border border-white/5">
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#pricing">
+            价格方案
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#features">
+            核心优势
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/blog/">
+            教程资源
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#faq">
+            常见问题
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+</div>
+<div class="flex items-center gap-5">
+<a class="relative group" href="/#pricing">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-70 blur group-hover:opacity-100 transition duration-200"></div>
+<div class="relative px-6 py-2.5 bg-slate-900 rounded-full flex items-center gap-2 border border-white/10 group-hover:bg-slate-800 transition">
+<span class="font-bold text-sm text-white">立即开通</span>
+<i class="fa-solid fa-bolt text-yellow-400 text-xs animate-pulse"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-1 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8"><div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<article class="lg:col-span-2 prose prose-invert prose-lg max-w-none">
+<header class="mb-12 text-center not-prose">
+<nav aria-label="Breadcrumb" class="overflow-x-auto whitespace-nowrap mb-6 mt-12">
+<ol class="flex items-center gap-2 text-sm text-slate-400">
+<li><a class="hover:text-white transition" href="/">首页</a></li>
+<li><span class="mx-1">/</span></li>
+<li><a class="hover:text-white transition" href="/blog/">教程资源</a></li>
+<li><span class="mx-1">/</span></li>
+<li aria-current="page" class="text-white font-medium">Gemini 做 PPT 神器：6套高质量提示词模板</li>
+</ol>
+</nav>
+<h1 class="mb-6 text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl">
+            Gemini 做 PPT 神器：<br class="hidden md:block"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-rose-400">6套高质量提示词模板，复制即用</span>
+</h1>
+<div class="flex items-center justify-center gap-6 text-sm text-slate-400">
+<span class="flex items-center gap-2"><i class="fa-regular fa-user"></i> Gemini-VIP</span>
+<span class="flex items-center gap-2"><i class="fa-regular fa-calendar"></i> <time datetime="2026-01-21">2026-01-21</time></span>
+<span class="flex items-center gap-2"><i class="fa-regular fa-clock"></i> 8分钟阅读</span>
+</div>
+</header>
+<div class="p-8 mb-12 rounded-2xl bg-white/5 border border-white/10">
+<p class="m-0 text-lg leading-relaxed text-slate-300">
+            用 Gemini Canvas 做 PPT，很多人的体验是：能用，但不惊艳。同样的主题，NotebookLM 生成的设计感明显更好，Canvas 出来的像套了个普通模板。其实，问题往往出在“提示词”上。大多数人只说“帮我做一个关于XX的PPT”，这就像让设计师“看着办”。Gemini 需要具体的设计指令。
+        </p>
+</div>
+<p>我花了几天时间，从 X、知乎、B站、优设网等地整理出这 6 套提示词模板。覆盖最常用的设计风格，直接复制，改掉主题和内容就能用。</p>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-table-cells-large text-pink-400"></i> 风格1：Bento Grid（便当盒布局）
+</h2>
+<p><strong>风格特点：</strong>模块化卡片设计，信息分区明确，网格系统整齐有序。<br/>
+<strong>适合场景：</strong>产品介绍、功能展示、多要点并列的内容。<br/>
+这个风格最近很火，苹果、Notion 都在用。信息密度高但不乱，适合内容多的场景。</p>
+<div class="relative group mt-6">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl opacity-30 blur group-hover:opacity-50 transition"></div>
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-pink-400 uppercase tracking-wider">英文指令（推荐）</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+Create a presentation about "［你的主题］" using Bento Grid style design.
+Requirements:
+- Use modular card layout with clear visual hierarchy
+- Apply soft shadows and rounded corners
+- Color scheme: neutral tones with accent colors
+- 8-10 slides covering: introduction, market analysis, key technologies, use cases, challenges, future outlook
+- Include data visualizations in card format
+- Modern, clean aesthetic
+</pre>
+</div>
+</div>
+<div class="relative group mt-6">
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-slate-400 uppercase tracking-wider">中文版</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+制作一个关于"［你的主题］”的演示文稿，采用Bento Grid便当盒布局风格。
+要求：
+- 使用模块化卡片布局，层次分明
+- 应用柔和阴影和圆角设计
+- 配色方案：中性色调搭配强调色
+- 8-10页内容，包含：简介、市场分析、关键技术、应用案例、挑战、未来展望
+- 以卡片形式展示数据可视化
+- 现代、简洁的美学风格
+</pre>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-minus text-pink-400"></i> 风格2：极简中性色（Minimalist Neutral）
+</h2>
+<p><strong>风格特点：</strong>浅灰、米白、深灰配色，留白充足，呼吸感强。<br/>
+<strong>适合场景：</strong>商务报告、年度总结、专业演讲。<br/>
+我个人最常用这个风格。不容易出错，领导看了也不会觉得花里胡哨。</p>
+<div class="relative group mt-6">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-stone-500 to-zinc-500 rounded-xl opacity-30 blur group-hover:opacity-50 transition"></div>
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-pink-400 uppercase tracking-wider">英文指令（推荐）</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+Design a minimalist presentation about "［你的主题］".
+Style specifications:
+- Color palette: warm grays (#F5F5F5, #E0E0E0), charcoal (#333333), off-white
+- Abundant white space and clean layout
+- Sans-serif typography (prefer Helvetica or Inter)
+- Subtle dividers and minimal decoration
+- 12-15 slides: cover, agenda, financial highlights, key metrics, team achievements, market position, challenges, strategy, Q&amp;A
+- Data charts in monochrome with single accent color
+- Professional, elegant, and sophisticated look
+</pre>
+</div>
+</div>
+<div class="relative group mt-6">
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-slate-400 uppercase tracking-wider">中文版</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+设计一个关于“［你的主题］”的极简主义演示文稿。
+风格规范：
+- 配色方案：暖灰色系（#F5F5F5，#E0E0E0）、深灰色（#333333）、米白色
+- 充足留白和简洁布局
+- 无衬线字体（首选Helvetica或Inter）
+- 细微分隔线和最小化装饰
+- 12-15页：封面、议程、财务亮点、关键指标、团队成就、市场地位、挑战、战略、问答
+- 单色数据图表搭配单一强调色
+- 专业、优雅、精致的外观
+</pre>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-bolt text-green-400"></i> 风格3：荧光绿瑞士国际主义（Neon Swiss International）
+</h2>
+<p><strong>风格特点：</strong>荧光绿为主强调色，网格系统严格对齐，高对比度，视觉冲击力强。<br/>
+<strong>适合场景：</strong>科技发布、数字营销、创新项目展示。<br/>
+这个风格很抓眼球，但不是所有场合都适合。给投资人看可以，给传统行业客户看可能会觉得太"潮"。</p>
+<div class="relative group mt-6">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-green-400 to-lime-400 rounded-xl opacity-30 blur group-hover:opacity-50 transition"></div>
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-green-400 uppercase tracking-wider">英文指令（推荐）</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+Create a presentation about "［你的主题］" in Swiss International Style with neon green accents.
+Design guidelines:
+- Primary colors: Black, white, neon green (#00FF00)
+- Grid-based layout with precise alignment
+- Geometric shapes and clean lines
+- Helvetica font family exclusively
+- High contrast text and backgrounds
+- 10 slides: title, overview, content strategy, social media trends, data analytics, automation tools, case studies, ROI metrics, implementation roadmap, conclusion
+- Charts and graphs with neon green highlights
+- Bold, modern, tech-forward aesthetic
+</pre>
+</div>
+</div>
+<div class="relative group mt-6">
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-slate-400 uppercase tracking-wider">中文版</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+创建一个关于“［你的主题］”的演示文稿，采用荧光绿瑞士国际主义风格。
+设计指南：
+-主色调：黑色、白色、荧光绿（#00FF00）
+- 基于网格的布局，精确对齐
+- 几何形状和简洁线条
+- 独家使用Helvetica字体系列
+- 高对比度文字和背景
+- 10页内容：标题、概述、内容策略、社交媒体趋势、数据分析、自动化工具、案例研究、ROI指标、实施路线图、结论
+- 图表使用荧光绿突出显示
+- 大胆、现代、科技感十足的美学
+</pre>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-circle-half-stroke text-white"></i> 风格4：极简黑白（Monochrome Minimal）
+</h2>
+<p><strong>风格特点：</strong>纯黑白配色，极致简约，强烈视觉对比，几何图形和线条艺术。<br/>
+<strong>适合场景：</strong>艺术展览、设计提案、创意行业演示。</p>
+<div class="relative group mt-6">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-gray-100 to-gray-400 rounded-xl opacity-30 blur group-hover:opacity-50 transition"></div>
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-white uppercase tracking-wider">英文指令（推荐）</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+Design a black and white minimalist presentation about "［你的主题］".
+Style requirements:
+- Strict black (#000000) and white (#FFFFFF) only
+- High contrast layout
+- Geometric patterns and line art
+- Serif and sans-serif font pairing
+- Asymmetric compositions
+- 8 slides: exhibition intro, featured artists, artwork showcases, themes, visitor information, events, gallery map, contact
+- Use negative space creatively
+- Artistic, editorial magazine style
+</pre>
+</div>
+</div>
+<div class="relative group mt-6">
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-slate-400 uppercase tracking-wider">中文版</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+设计一个关于“［你的主题］”的黑白极简演示文稿。
+风格要求：
+- 严格只使用纯黑色（#000000）和纯白色（#FFFFFF）
+- 高对比度布局
+- 几何图案和线条艺术
+- 衬线字体和无衬线字体搭配
+- 非对称构图
+- 8页内容：展览介绍、特色艺术家、作品展示、主题、参观信息、活动、画廊地图、联系方式
+- 创意运用负空间
+- 艺术性、编辑杂志风格
+</pre>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-palette text-purple-400"></i> 风格5：渐变色彩（Gradient Vibrant）
+</h2>
+<p><strong>风格特点：</strong>流畅渐变背景，多彩但和谐，现代、充满活力。<br/>
+<strong>适合场景：</strong>创业路演、产品发布、科技创新展示。</p>
+<div class="relative group mt-6">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl opacity-30 blur group-hover:opacity-50 transition"></div>
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-purple-400 uppercase tracking-wider">英文指令（推荐）</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+Create a vibrant gradient presentation about "［你的主题］".
+Design specifications:
+- Gradient backgrounds: purple to blue, orange to pink, green to teal
+- Smooth color transitions
+- White or light text on gradient backgrounds
+- Rounded elements and soft shadows
+- Modern sans-serif fonts
+- 12 slides: cover, problem statement, solution overview, product features, technology stack, market opportunity, business model, traction, team, roadmap, competition, funding
+- Glassmorphism effects on cards
+- Energetic, optimistic, forward-thinking vibe
+</pre>
+</div>
+</div>
+<div class="relative group mt-6">
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-slate-400 uppercase tracking-wider">中文版</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+创建一个关于“［你的主题］"的活力渐变演示文稿。
+设计规范：
+- 渐变背景：紫到蓝、橙到粉、绿到青
+- 流畅的颜色过渡
+- 渐变背景上使用白色或浅色文字
+- 圆角元素和柔和阴影
+- 现代无衬线字体
+- 12页内容：封面、问题陈述、解决方案概述、产品特性、技术栈、市场机会、商业模式、发展态势、团队、路线图、竞争分析、融资
+- 卡片上使用玻璃拟态效果
+- 充满活力、乐观、前瞻性的氛围
+</pre>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-briefcase text-blue-400"></i> 风格6：企业专业（Corporate Professional）
+</h2>
+<p><strong>风格特点：</strong>蓝色、深灰为主色调，强调数据和图表，严谨、可信赖。<br/>
+<strong>适合场景：</strong>财务报告、投资提案、企业汇报。</p>
+<div class="relative group mt-6">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl opacity-30 blur group-hover:opacity-50 transition"></div>
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-blue-400 uppercase tracking-wider">英文指令（推荐）</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+Design a corporate professional presentation about "［你的主题］".
+Requirements:
+- Color scheme: navy blue (#003366), corporate blue (#0066CC), gray (#666666), white
+- Clean, structured layout
+- Professional sans-serif fonts
+- Emphasis on data visualization (bar charts, line graphs, pie charts)
+- 15 slides: title, executive summary, financial highlights, revenue breakdown, expense analysis, profit margins, market share, competitor comparison, regional performance, product performance, risk factors, strategic initiatives, forecast, recommendations, appendix
+- Include company logo and branding
+- Conservative, trustworthy, authoritative style
+</pre>
+</div>
+</div>
+<div class="relative group mt-6">
+<div class="relative bg-slate-900 rounded-xl p-6 border border-white/10">
+<div class="flex justify-between items-center mb-2">
+<div class="text-xs font-bold text-slate-400 uppercase tracking-wider">中文版</div>
+<button class="text-xs bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white px-2 py-1 rounded transition flex items-center gap-1" onclick="copyPrompt(this)">
+<i class="fa-regular fa-copy"></i> 复制
+    </button>
+</div>
+<pre class="text-sm text-slate-300 font-mono overflow-x-auto whitespace-pre-wrap">
+设计一个关于“［你的主题］”的企业专业演示文稿。
+要求：
+- 配色方案：海军蓝（#003366）、企业蓝（#0066CC）、灰色（#666666）、白色
+- 简洁、结构化布局
+- 专业无衬线字体
+- 强调数据可视化（柱状图、折线图、饼图）
+- 15页内容：标题、执行摘要、财务亮点、收入细分、费用分析、利润率、市场份额、竞争对比、区域表现、产品表现、风险因素、战略举措、预测、建议、附录
+- 包含公司标志和品牌元素
+- 保守、可信、权威的风格
+</pre>
+</div>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-list-check text-pink-400"></i> 怎么选？一张表说清楚
+</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-slate-300 border-collapse">
+<thead class="text-xs text-pink-400 uppercase bg-slate-800">
+<tr>
+<th class="px-6 py-3 rounded-tl-lg">风格</th>
+<th class="px-6 py-3">适合场景</th>
+<th class="px-6 py-3 rounded-tr-lg">关键词</th>
+</tr>
+</thead>
+<tbody class="bg-slate-900/50">
+<tr class="border-b border-white/10">
+<td class="px-6 py-4 font-medium text-white">Bento Grid</td>
+<td class="px-6 py-4">产品介绍、功能展示</td>
+<td class="px-6 py-4">模块化、卡片、现代</td>
+</tr>
+<tr class="border-b border-white/10">
+<td class="px-6 py-4 font-medium text-white">极简中性</td>
+<td class="px-6 py-4">商务报告、年度总结</td>
+<td class="px-6 py-4">留白、优雅、专业</td>
+</tr>
+<tr class="border-b border-white/10">
+<td class="px-6 py-4 font-medium text-white">荧光绿瑞士</td>
+<td class="px-6 py-4">科技发布、数字营销</td>
+<td class="px-6 py-4">高对比、冲击力、科技感</td>
+</tr>
+<tr class="border-b border-white/10">
+<td class="px-6 py-4 font-medium text-white">极简黑白</td>
+<td class="px-6 py-4">艺术展览、设计提案</td>
+<td class="px-6 py-4">极致、艺术、杂志感</td>
+</tr>
+<tr class="border-b border-white/10">
+<td class="px-6 py-4 font-medium text-white">渐变色彩</td>
+<td class="px-6 py-4">创业路演、产品发布</td>
+<td class="px-6 py-4">活力、年轻、创新</td>
+</tr>
+<tr class="border-b border-white/10">
+<td class="px-6 py-4 font-medium text-white">企业专业</td>
+<td class="px-6 py-4">财务报告、投资提案</td>
+<td class="px-6 py-4">严谨、数据、可信</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6 flex items-center gap-3">
+<i class="fa-solid fa-wrench text-pink-400"></i> 生成后不满意？用这些指令快速调整
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10">
+<div class="font-bold text-white mb-2">字太小</div>
+<code class="text-xs bg-slate-800 px-2 py-1 rounded text-pink-300">Increase font size on all slides by 20%</code>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10">
+<div class="font-bold text-white mb-2">换配色</div>
+<code class="text-xs bg-slate-800 px-2 py-1 rounded text-pink-300">Change color scheme to [颜色1] and [颜色2]</code>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10">
+<div class="font-bold text-white mb-2">加 Logo</div>
+<code class="text-xs bg-slate-800 px-2 py-1 rounded text-pink-300">Add company logo to top right of all slides</code>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10">
+<div class="font-bold text-white mb-2">间距不对</div>
+<code class="text-xs bg-slate-800 px-2 py-1 rounded text-pink-300">Increase spacing between elements</code>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10">
+<div class="font-bold text-white mb-2">统一对齐</div>
+<code class="text-xs bg-slate-800 px-2 py-1 rounded text-pink-300">Align all text to left/center</code>
+</div>
+<div class="bg-slate-900/50 p-4 rounded-xl border border-white/10">
+<div class="font-bold text-white mb-2">加页码</div>
+<code class="text-xs bg-slate-800 px-2 py-1 rounded text-pink-300">Add slide numbers to bottom right</code>
+</div>
+</div>
+<div class="my-8 p-6 bg-pink-500/10 border-l-4 border-pink-500 rounded-r-xl">
+<h4 class="text-pink-400 font-bold mb-2">💡 核心原则</h4>
+<p class="text-slate-300 text-sm mb-0">
+提示词写得越具体，Gemini 给你的结果越接近预期。这 6 套模板覆盖了最常见的场景，但不是死的。你可以根据自己的需求调整配色、页数、内容结构。
+<br/><br/>
+<strong>核心原则就一条：告诉它你要什么风格、什么颜色、什么布局、多少页、每页放什么。别指望 AI 读心术。</strong>
+</p>
+</div>
+<div class="mt-12 pt-8 border-t border-white/10 text-center">
+<p class="text-slate-400 italic">
+            "现在，复制一套你喜欢的指令，去 Gemini Canvas 试试吧！"
+        </p>
+</div>
+<script>
+    function copyPrompt(btn) {
+        const pre = btn.parentElement.nextElementSibling;
+        const text = pre.textContent.trim();
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> 已复制';
+            btn.classList.add('text-green-400');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('text-green-400');
+            }, 2000);
+        });
+    }
+</script>
+</article>
+<aside class="lg:col-span-1 relative">
+<div class="sticky top-24 space-y-8">
+<div class="group relative rounded-3xl bg-[#0B0F19] border border-white/10 overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(236,72,153,0.15)] transition-all duration-500">
+<div class="absolute -inset-[1px] bg-gradient-to-b from-pink-500 via-purple-500 to-transparent rounded-3xl opacity-30 group-hover:opacity-100 transition duration-700"></div>
+<div class="relative bg-[#0B0F19] rounded-[23px] overflow-hidden p-6 h-full">
+<div class="flex justify-between items-center mb-6">
+<span class="bg-gradient-to-r from-pink-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">Best Value</span>
+<span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>
+</div>
+<div class="mb-6 relative h-32 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/5 flex items-center justify-center overflow-hidden group-hover:border-pink-500/30 transition">
+<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+<i class="fa-solid fa-rocket text-5xl text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-purple-400 group-hover:scale-110 transition duration-500"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Gemini 3.0 Pro 成品号</h3>
+<p class="text-xs text-slate-400 mb-6 border-b border-white/5 pb-4">含 Gmail · 0门槛直登 · 稳定防封</p>
+<div class="flex items-end justify-between mb-6">
+<div>
+<div class="text-3xl font-black text-white tracking-tight">¥173<span class="text-sm font-normal text-slate-500 ml-1">/月</span></div><div class="text-xs text-slate-500 line-through mt-1">原价 ¥185</div>
+</div>
+<div class="text-right"><div class="text-[10px] text-green-400 font-bold bg-green-500/10 px-2 py-1 rounded border border-green-500/20">已省 ¥12</div></div>
+</div>
+<ul class="space-y-3 mb-6">
+<li class="flex items-center gap-3 text-sm text-slate-300"><i class="fa-solid fa-check text-pink-400"></i> 100万 Token 上下文</li>
+<li class="flex items-center gap-3 text-sm text-slate-300"><i class="fa-solid fa-check text-pink-400"></i> 2TB Google One 空间</li>
+<li class="flex items-center gap-3 text-sm text-slate-300"><i class="fa-solid fa-bolt text-yellow-400"></i> 自动发货，秒到账</li>
+</ul>
+<div class="bg-white/5 rounded-lg p-3 mb-6 flex items-center justify-between border border-white/5 cursor-pointer hover:bg-white/10 transition" onclick="copyCode(this)">
+<div class="text-xs text-slate-400">优惠码: <span class="text-white font-mono font-bold text-sm ml-1">xmpick</span></div>
+<i class="fa-regular fa-copy text-slate-400 hover:text-white transition"></i>
+</div>
+<a class="relative w-full block group/btn overflow-hidden rounded-xl bg-white text-black font-bold text-center py-3.5 transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.3)]" href="/#pricing">
+<div class="absolute inset-0 bg-gradient-to-r from-pink-400 via-purple-400 to-rose-400 opacity-0 group-hover/btn:opacity-20 transition duration-300"></div>
+<span class="relative flex items-center justify-center gap-2">立即开通 <i class="fa-solid fa-arrow-right -rotate-45 group-hover/btn:rotate-0 transition-transform"></i></span>
+</a>
+<div class="mt-4 text-center"><span class="text-[10px] text-slate-600 flex items-center justify-center gap-1"><i class="fa-solid fa-shield-halved"></i> 7天质保 · 售后无忧</span></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+
+        <div class="mt-16 border-t border-white/10 pt-10">
+          <h3 class="text-xl font-bold text-white mb-6">相关文章推荐</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="/blog/gemini-metaphysics-prompts" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-indigo-600/20 to-purple-600/20 flex items-center justify-center text-indigo-400 mb-3">
+                <i class="fa-solid fa-yin-yang text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini 玄学指令大全： AI 算命、塔罗与解梦的魔法咒语</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+            <a href="/blog/gemini-3-prompt-guide" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center text-purple-400 mb-3">
+                <i class="fa-solid fa-wand-magic-sparkles text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini 3 提示词最佳实践： 日常使用指南</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+            <a href="/blog/gemini-membership-guide" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-orange-600/20 to-red-600/20 flex items-center justify-center text-orange-400 mb-3">
+                <i class="fa-solid fa-gem text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini 会员购买全攻略： 学生优惠、家庭组与成品号对比</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+            <a href="/blog/gemini-pro-prompts" class="group block rounded-2xl bg-white/5 border border-white/10 p-4 hover:bg-white/10 transition">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 flex items-center justify-center text-purple-400 mb-3">
+                <i class="fa-solid fa-wand-magic-sparkles text-3xl"></i>
+              </div>
+              <div class="text-white font-bold text-sm line-clamp-2">Gemini Pro 提示词大全 10个神级 Prompt 解锁潜能</div>
+              <div class="text-slate-500 text-xs mt-1">推荐文章</div>
+            </a>
+            
+          </div>
+        </div>
+        
+</main>
+<footer class="relative border-t border-white/10 bg-[#020617] pt-20 pb-10 overflow-hidden">
+    <div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[128px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[128px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16 border-b border-white/5 pb-12">
+            
+            <div class="lg:col-span-4 space-y-6">
+                <a class="flex items-center gap-2 group w-fit" href="/">
+                    <div class="relative w-8 h-8 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-purple-500/20 blur-md rounded-full group-hover:bg-purple-500/40 transition"></div>
+                        <svg class="relative w-full h-full text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="url(#footer-gradient)"></path>
+                            <defs>
+                                <lineargradient id="footer-gradient" x1="2" x2="22" y1="2" y2="22">
+                                    <stop stop-color="#60A5FA"></stop><stop offset="1" stop-color="#C084FC"></stop>
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-xl text-white tracking-tight">GEMINI-VIP<span class="text-purple-400 font-light">.TOP</span></span>
+                </a>
+                
+                <p class="text-slate-400 text-sm leading-relaxed pr-4">
+                    专注于为专业人士提供稳定、合规的 Google Gemini Advanced 会员服务。解锁 AI 生产力，从拥有一个稳定的账号开始。
+                </p>
+
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-green-500/5 border border-green-500/10 rounded-full w-fit">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="text-xs font-mono font-medium text-green-400">Automatic Delivery Online</span>
+                </div>
+
+                <div class="flex gap-4 pt-2">
+                    <div class="relative group">
+                        <a class="w-8 h-8 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white hover:border-white/20 transition duration-300" href="mailto:support@gemini-vip.top" aria-label="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <div class="absolute bottom-full left-0 mb-2 px-3 py-1.5 bg-slate-800 text-white text-xs font-mono rounded-lg border border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap z-20"> 
+                            support@gemini-vip.top 
+                            <div class="absolute top-full left-4 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-800"></div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">产品服务</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#pricing">Gemini 成品号</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#pricing">会员代充</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#pricing">API 额度包</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#features">核心权益</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">客户支持</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/about">关于我们</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#terms">服务条款</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#privacy">隐私政策</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#refund">退款政策</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">安全支付</h4>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="aspect-square rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/50 transition group" title="Alipay">
+                            <i class="fa-brands fa-alipay text-2xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="aspect-square rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-green-500 hover:border-green-500/50 transition group" title="WeChat Pay">
+                            <i class="fa-brands fa-weixin text-2xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="aspect-square rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-green-400 hover:border-green-400/50 transition group" title="USDT / Crypto">
+                            <i class="fa-brands fa-bitcoin text-2xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-600">
+            <div class="flex flex-col gap-2 max-w-2xl">
+                <p>&copy; 2026 Gemini-VIP.top. All rights reserved.</p>
+                <p class="opacity-60 leading-relaxed text-justify">
+                    Disclaimer: Gemini-VIP.top is an independent third-party service provider. All product names, logos, and brands (including Google, Gemini, Google One) are property of their respective owners. We are not affiliated with, associated with, or endorsed by Google Inc.
+                </p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+                <span>Made for AI Future</span>
+                <span class="mx-1 text-slate-700">•</span>
+                <a href="/sitemap" class="text-slate-600 hover:text-slate-400 transition">网站地图</a>
+            </div>
+        </div>
+    </div>
+    
+    
+</footer>
+<script>
+    function copyCode(element) {
+      const code = 'xmpick'
+      navigator.clipboard.writeText(code).then(() => {
+        if (element) {
+          const originalHTML = element.innerHTML
+          const originalClass = element.className
+          element.innerHTML = '<i class="fa-solid fa-check"></i> <span>✅ 已复制!</span>'
+          element.className = originalClass.replace(/bg-[^\s]+/g, '') + ' bg-green-500 text-white'
+          setTimeout(() => {
+            element.innerHTML = originalHTML
+            element.className = originalClass
+          }, 2000)
+        } else {
+          const toast = document.createElement('div')
+          toast.style.position = 'fixed'
+          toast.style.bottom = '24px'
+          toast.style.right = '24px'
+          toast.style.zIndex = '9999'
+          toast.className = 'px-4 py-2 rounded-lg bg-green-600 text-white text-sm shadow-lg'
+          toast.textContent = '优惠码已复制：xmpick'
+          document.body.appendChild(toast)
+          setTimeout(() => { toast.remove() }, 2000)
+        }
+      })
+    }
+  </script>
+<script>
+    // 只保留视觉动效，滚动交给浏览器原生
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // 动画只播一次
+          }
+        });
+      }, { threshold: 0.1 });
+
+      // 选取所有需要动效的元素
+      document.querySelectorAll('section, h2, .glass-card, footer').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

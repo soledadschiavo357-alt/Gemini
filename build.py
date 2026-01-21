@@ -52,6 +52,7 @@ POST_CONFIG = {
     'guide-cn': {'color': 'teal', 'icon': 'fa-language', 'category': '中文指南'},
     'gemini-3-prompt-guide': {'color': 'purple', 'icon': 'fa-wand-magic-sparkles', 'category': 'Prompt教程'},
     'gemini-metaphysics-prompts': {'color': 'indigo', 'icon': 'fa-yin-yang', 'category': 'Prompt教程'},
+    'gemini-ppt-prompts': {'color': 'pink', 'icon': 'fa-file-powerpoint', 'category': 'Prompt教程'},
     'choose-model-cn': {'color': 'violet', 'icon': 'fa-robot', 'category': '模型选型'},
     'comparison': {'color': 'yellow', 'icon': 'fa-not-equal', 'category': '竞品对比'},
     'pro-vs-free': {'color': 'green', 'icon': 'fa-circle-half-stroke', 'category': '版本对比'}
@@ -715,6 +716,24 @@ def scan_and_build_homepage(all_posts):
 
     with open(index_file, 'r', encoding='utf-8') as f:
         content = f.read()
+
+    # --- Update Last Updated Date ---
+    # Find the latest date from all posts
+    all_dates = [p.get('date', '1970-01-01') for p in all_posts]
+    if all_dates:
+        latest_date = max(all_dates)
+        print(f"Updating Homepage Last Updated Date to: {latest_date}")
+        
+        # Regex to replace the timestamp
+        # Matches: <div class="mt-2 text-xs text-slate-500">最后更新：<time datetime="...">...</time></div>
+        date_pattern = r'<div class="mt-2 text-xs text-slate-500">\s*最后更新：\s*<time datetime="[^"]*">[^<]*</time>\s*</div>'
+        new_date_html = f'<div class="mt-2 text-xs text-slate-500">最后更新：<time datetime="{latest_date}">{latest_date}</time></div>'
+        
+        if re.search(date_pattern, content):
+            content = re.sub(date_pattern, new_date_html, content)
+        else:
+            print("Warning: Could not find 'Last Updated' div in blog/index.html to update.")
+    # --------------------------------
     
     if '{{ featured_grid }}' in content:
         new_content = content.replace('{{ featured_grid }}', grid_html)

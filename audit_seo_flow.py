@@ -59,6 +59,26 @@ def parse_sitemap():
         print(f"Error parsing sitemap: {e}")
     return urls
 
+def parse_redirects():
+    redirects_path = os.path.join(ROOT_DIR, '_redirects')
+    redirect_sources = set()
+    if not os.path.exists(redirects_path):
+        return redirect_sources
+    
+    try:
+        with open(redirects_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                parts = line.split()
+                if len(parts) >= 2:
+                    source = parts[0]
+                    redirect_sources.add(source)
+    except Exception as e:
+        print(f"Error parsing _redirects: {e}")
+    return redirect_sources
+
 def file_path_to_url(file_path):
     rel_path = os.path.relpath(file_path, ROOT_DIR)
     
@@ -140,6 +160,10 @@ def main():
     # Get Sitemap URLs
     sitemap_urls = parse_sitemap()
     print(f"Found {len(sitemap_urls)} URLs in sitemap.xml.")
+    
+    # Get Redirects
+    redirect_urls = parse_redirects()
+    print(f"Found {len(redirect_urls)} redirects in _redirects.")
 
     # Graph Data
     out_links = defaultdict(set) # url -> set(target_urls)
@@ -200,6 +224,9 @@ def main():
                     if matched_url:
                         out_links[source_url].add(matched_url)
                         in_links[matched_url].add(source_url)
+                    elif target_url in redirect_urls or target_url.rstrip('/') in redirect_urls:
+                        # Valid redirect, treat as functional link
+                        pass
                     else:
                         # Check if it looks like an internal link that failed to match
                         # We already filtered external links in normalize_link
@@ -333,6 +360,78 @@ def main():
             print(f"    - {url}")
     else:
         print("  ✅ All sitemap URLs exist on disk.")
+
+    # 7. SEO Health Score
+    print("\n" + "="*50)
+    print("🏆 SEO HEALTH SCORE")
+    print("="*50)
+
+    score = 100
+    deductions = []
+
+    # Penalties
+    # 1. Orphans (Exclude /404 and google verification files if desired, keeping it strict for now except 404)
+    real_orphans = [u for u in orphans if u != '/404' and not u.startswith('/google')]
+    if real_orphans:
+        points = len(real_orphans) * 5
+        score -= points
+        deductions.append(f"-{points} pts: {len(real_orphans)} Orphan Pages (High Impact)")
+
+    # 2. Dirty Links
+    if dirty_links:
+        points = len(dirty_links) * 1
+        score -= points
+        deductions.append(f"-{points} pts: {len(dirty_links)} Dirty URLs (Low Impact)")
+
+    # 3. Broken Links
+    if broken_links:
+        points = len(broken_links) * 5
+        score -= points
+        deductions.append(f"-{points} pts: {len(broken_links)} Broken Links (High Impact)")
+        
+    # 4. Deep Pages
+    if deep_pages:
+        points = len(deep_pages) * 2
+        score -= points
+        deductions.append(f"-{points} pts: {len(deep_pages)} Deep Pages (>3 clicks) (Medium Impact)")
+
+    # 5. Sitemap Inconsistency
+    # Missing in Sitemap (Files exist but not in sitemap)
+    # Exclude 404 and google verify
+    real_not_in_sitemap = [u for u in not_in_sitemap if u != '/404' and not u.startswith('/google')]
+    if real_not_in_sitemap:
+        points = len(real_not_in_sitemap) * 2
+        score -= points
+        deductions.append(f"-{points} pts: {len(real_not_in_sitemap)} Files missing from Sitemap (Medium Impact)")
+    
+    # Missing Files (Sitemap has URL, Disk doesn't)
+    if not_scanned:
+        points = len(not_scanned) * 5
+        score -= points
+        deductions.append(f"-{points} pts: {len(not_scanned)} Sitemap URLs not found on disk (High Impact)")
+
+    # Cap score
+    score = max(0, score)
+    
+    # Grade
+    if score >= 90: grade = "A 🌟"
+    elif score >= 80: grade = "B ✅"
+    elif score >= 70: grade = "C ⚠️"
+    elif score >= 60: grade = "D 🔴"
+    else: grade = "F 💀"
+
+    print(f"\nFinal Score: {score}/100")
+    print(f"Grade: {grade}")
+    
+    if deductions:
+        print("\nDeductions:")
+        for d in deductions:
+            print(f"  {d}")
+        print("\n💡 Tip: Fix 'High Impact' issues first to significantly improve your score.")
+    else:
+        print("\nPerfect Score! Great job! 🎉")
+        
+    print("\n" + "="*50)
 
 if __name__ == '__main__':
     main()
