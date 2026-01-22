@@ -171,6 +171,7 @@ def main():
     dirty_links = [] # (source_file, link)
     broken_links = [] # (source_url, target_url)
     external_links = defaultdict(list) # target_domain -> list(source_urls)
+    redirect_usage = defaultdict(set) # redirect_url -> set(source_urls)
     
     # Scanning
     for f in files:
@@ -226,7 +227,8 @@ def main():
                         in_links[matched_url].add(source_url)
                     elif target_url in redirect_urls or target_url.rstrip('/') in redirect_urls:
                         # Valid redirect, treat as functional link
-                        pass
+                        matched_redirect = target_url if target_url in redirect_urls else target_url.rstrip('/')
+                        redirect_usage[matched_redirect].add(source_url)
                     else:
                         # Check if it looks like an internal link that failed to match
                         # We already filtered external links in normalize_link
@@ -283,6 +285,17 @@ def main():
                  print(f"    (from: {', '.join(sorted(list(set(sources))))})")
     else:
         print("  ✅ No external links found.")
+
+    # 4.1 Redirect Usage Check (Link Equity)
+    print("\n🔀 Internal Redirect Usage (Link Equity Leakage):")
+    if redirect_usage:
+        print(f"  Found {len(redirect_usage)} internal redirects being used.")
+        for r_url, sources in sorted(redirect_usage.items()):
+            print(f"  - {r_url} is linked from:")
+            for s in sorted(sources):
+                print(f"    -> {s}")
+    else:
+        print("  ✅ No internal links point to redirects.")
 
     # 5. Top Pages by In-links (Show ALL)
     print("\n📊 Page Connectivity Report (In-links Count):")

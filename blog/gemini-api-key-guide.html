@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Gemini API Key购买与价格_独享Gemini API申请获取攻略_国内直连 - Gemini-VIP</title>
+<meta content="2026最新Gemini API Key获取与购买指南。详解Google Gemini API价格、官方免费申请步骤、独享API Key购买方案。提供稳定国内直连中转服务，解决谷歌Gemini API怎么获取的问题，助你快速接入 Google Gemini 3.0 Pro。" name="description"/>
+<meta content="Gemini API Key购买, Gemini API购买, Gemini独享API Key, Gemini API 价格, Gemini API申请, Gemini API Key获取, 谷歌Gemini API, Google API Key怎么获取" name="keywords"/>
+<link href="https://gemini-vip.top/blog/gemini-api-key-guide" rel="canonical"/>
+<meta content="zh-CN" http-equiv="content-language"/>
+<meta content="global" name="distribution"/>
+<meta content="Gemini API Key 获取与使用全攻略：免费申请、独享方案与国内直连" property="og:title"/>
+<meta content="2026最新Gemini API Key获取指南。详解官方免费申请步骤、独享API Key方案、国内直连（反代/中转）配置教程，以及安全与成本分析。" property="og:description"/>
+<meta content="article" property="og:type"/>
+<meta content="https://gemini-vip.top/blog/gemini-api-key-guide" property="og:url"/>
+<meta content="https://gemini-vip.top/assets/logo.png" property="og:image"/>
+<meta content="Gemini-VIP.top" property="og:site_name"/>
+<meta content="zh_CN" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Gemini API Key 获取与使用全攻略：免费申请、独享方案与国内直连" name="twitter:title"/>
+<meta content="2026最新Gemini API Key获取指南。详解官方免费申请步骤、独享API Key方案、国内直连（反代/中转）配置教程，以及安全与成本分析。" name="twitter:description"/>
+<meta content="https://gemini-vip.top/assets/logo.png" name="twitter:image"/>
+<!-- Social Extra -->
+<meta content="@GeminiVIP" name="twitter:site"/>
+<meta content="@GeminiVIP" name="twitter:creator"/>
+<!-- Favicon & App Icon -->
+<link href="/assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="/assets/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/assets/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/assets/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="/site.webmanifest" rel="manifest"/>
+<link href="/assets/favicon.ico" rel="shortcut icon"/>
+<!-- Hreflang -->
+<link href="https://gemini-vip.top/blog/gemini-api-key-guide" hreflang="zh-CN" rel="alternate"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; font-family: 'Inter', sans-serif; }
+    .gemini-bg {
+      background-color: #020617;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.18), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.18), transparent 25%);
+    }
+    .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+    .glass-card:hover { border-color: rgba(168,85,247,0.4); box-shadow: 0 10px 40px -10px rgba(168,85,247,0.25); }
+    .bg-noise { background-image: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.05; }
+    pre { background: #1e293b !important; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.1); }
+    code { font-family: 'Fira Code', monospace; font-size: 0.875rem; color: #e2e8f0; }
+
+    /* 动画类 */
+    .animate-gradient-x { background-size: 200% 200%; animation: gradient-x 6s ease infinite; }
+    .animate-float-slow { animation: float 8s ease-in-out infinite; }
+    .animate-pulse-slow { animation: pulse 6s ease-in-out infinite; }
+    .animate-gradient-xy { animation: gradient-xy 8s ease infinite; }
+    .group-hover\/btn\:animate-shine:hover { animation: shine 0.75s; }
+
+    /* 进场动画 */
+    .reveal-hero { opacity: 0; filter: blur(20px); transform: scale(0.9) translateY(40px); transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity, filter; }
+    .reveal { opacity: 0; filter: blur(8px); transform: translateY(30px) scale(0.98); transition: all 1.2s cubic-bezier(0.2, 0.8, 0.2, 1); will-change: transform, opacity, filter; }
+    .reveal.active, .reveal-hero.active { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+
+    /* 延迟工具类 */
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+
+    /* 关键帧动画 */
+    @keyframes gradient-x { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes float { 0%, 100% { transform: translateY(0px) rotate(3deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
+    @keyframes shine { 100% { left: 125%; } }
+    @keyframes gradient-xy { 0%{filter:hue-rotate(0deg)} 50%{filter:hue-rotate(30deg)} 100%{filter:hue-rotate(0deg)} }
+    @keyframes scan { 0%, 100% { top: 0%; opacity: 0; } 10% { opacity: 1; } 50% { top: 90%; } 90% { opacity: 1; } }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<meta content="index, follow, max-image-preview:large" name="robots"/>
+<meta content="2026-01-22" property="article:published_time"/>
+<meta content="Gemini-VIP" property="article:author"/>
+<meta content="API教程" property="article:section"/>
+<!-- Card Metadata -->
+<meta name="card-icon" content="fa-key">
+<meta name="card-color" content="cyan">
+<meta name="card-category" content="API教程">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gemini API Key购买与价格_独享Gemini API申请获取攻略_国内直连",
+  "description": "2026最新Gemini API Key获取与购买指南。详解Google Gemini API价格、官方免费申请步骤、独享API Key购买方案。提供稳定国内直连中转服务，解决谷歌Gemini API怎么获取的问题，助你快速接入 Google Gemini 3.0 Pro。",
+  "datePublished": "2026-01-22",
+  "dateModified": "2026-01-22",
+  "url": "https://gemini-vip.top/blog/gemini-api-key-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Gemini-VIP",
+    "url": "https://gemini-vip.top/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Gemini-VIP",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://gemini-vip.top/assets/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://gemini-vip.top/blog/gemini-api-key-guide"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://gemini-vip.top/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "教程资源",
+        "item": "https://gemini-vip.top/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Gemini API Key 获取与购买全攻略",
+        "item": "https://gemini-vip.top/blog/gemini-api-key-guide"
+      }
+    ]
+  }
+}
+</script>
+</head>
+<body class="gemini-bg min-h-screen text-slate-200 selection:bg-purple-500 selection:text-white">
+<nav class="fixed top-0 sm:top-6 left-0 right-0 z-50 px-2 sm:px-6 transition-all duration-300">
+<div class="max-w-7xl mx-auto rounded-2xl border border-white/10 bg-[#020617]/80 backdrop-blur-2xl shadow-[0_0_40px_-10px_rgba(124,58,237,0.15)]">
+<div class="px-6 h-16 sm:h-20 flex items-center justify-between">
+<a aria-label="Gemini-VIP 首页" class="flex items-center gap-3 group" href="/">
+<div class="relative w-8 h-8 flex items-center justify-center">
+<div class="absolute inset-0 bg-purple-500/30 blur-lg rounded-full group-hover:bg-purple-500/50 transition"></div>
+<svg aria-hidden="true" class="relative w-full h-full text-white drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="url(#nav-gradient)"></path>
+<defs>
+<lineargradient id="nav-gradient" x1="0" x2="24" y1="0" y2="24">
+<stop offset="0%" stop-color="#60A5FA"></stop>
+<stop offset="100%" stop-color="#C084FC"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<div class="flex flex-col leading-none">
+<span class="font-black text-xl tracking-tighter text-white group-hover:tracking-normal transition-all duration-500">
+              GEMINI-VIP<span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 font-light ml-0.5">.TOP</span>
+</span>
+</div>
+</a>
+<div class="hidden md:flex items-center gap-10 bg-white/5 px-8 py-2.5 rounded-full border border-white/5">
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#pricing">
+            价格方案
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#features">
+            核心优势
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/blog/">
+            教程资源
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+<a class="text-sm font-medium text-slate-400 hover:text-white transition relative group" href="/#faq">
+            常见问题
+            <span class="absolute -bottom-3 left-1/2 w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+</a>
+</div>
+<div class="flex items-center gap-5">
+<a class="relative group" href="/#pricing">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-70 blur group-hover:opacity-100 transition duration-200"></div>
+<div class="relative px-6 py-2.5 bg-slate-900 rounded-full flex items-center gap-2 border border-white/10 group-hover:bg-slate-800 transition">
+<span class="font-bold text-sm text-white">立即开通</span>
+<i class="fa-solid fa-bolt text-yellow-400 text-xs animate-pulse"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</nav>
+<main class="flex-1 max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Main Content -->
+<article class="lg:col-span-2">
+<header class="mb-12 text-center">
+<nav aria-label="Breadcrumb" class="overflow-x-auto whitespace-nowrap mb-6 mt-12">
+<ol class="flex items-center justify-center gap-2 text-sm text-slate-400">
+<li><a class="hover:text-white transition" href="/">首页</a></li>
+<li><span class="mx-1">/</span></li>
+<li><a class="hover:text-white transition" href="/blog/">教程资源</a></li>
+<li><span class="mx-1">/</span></li>
+<li aria-current="page" class="text-white font-medium">Gemini API Key 获取与使用全攻略</li>
+</ol>
+</nav>
+<h1 class="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
+              Gemini API Key 获取与购买全攻略：<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">免费申请、独享方案与价格分析</span>
+</h1>
+<div class="flex items-center justify-center gap-6 text-sm text-slate-400 mb-8">
+<a class="flex items-center gap-2 hover:text-white transition group" href="/" rel="author">
+<div class="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-[10px] text-white font-bold group-hover:scale-110 transition">V</div>
+<span>Gemini-VIP</span>
+</a>
+<span class="flex items-center gap-2">
+<i class="fa-regular fa-calendar-days"></i>
+<time datetime="2026-01-22">2026年01月22日</time>
+</span>
+<span class="flex items-center gap-2">
+<i class="fa-regular fa-clock"></i>
+<span>8分钟阅读</span>
+</span>
+</div>
+<p class="text-slate-400 text-lg">想用上 Gemini API，但官方渠道在国内使用起来确实有点麻烦。本文整理了几种主流的购买和使用方法，帮你快速上手。</p>
+</header>
+<div class="prose prose-invert prose-lg mx-auto">
+<p>在国内使用 Gemini API，主要面临两个问题：<strong>网络环境</strong>和<strong>支付门槛</strong>。目前主要有两种途径：​​自己申请（免费/付费）和购买第三方 API​​。自己申请虽然官方可靠，但有额度限制且需要网络支持；第三方则更省事，适合集成到应用中。</p>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6">一、官方 API Key 获取（免费但有门槛）</h2>
+<p>这是最官方、成本最低的方式，但需要你准备好海外网络环境和一个谷歌账号。</p>
+<div class="bg-slate-800/50 rounded-xl p-6 border border-white/5 mb-8">
+<h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-list-check mr-3 text-cyan-400"></i> 申请步骤</h3>
+<ol class="space-y-3 text-slate-300 list-decimal list-inside">
+<li>访问 <strong>Google AI Studio</strong> (<a href="https://aistudio.google.com" rel="nofollow" target="_blank">aistudio.google.com</a>)。</li>
+<li>登录你的谷歌账号（建议使用非主用账号，避免封号风险）。</li>
+<li>在左侧边栏找到“<strong>API Keys</strong>”，点击右上角的“<strong>Create API Key</strong>”即可获得免费的 API 密钥。</li>
+</ol>
+</div>
+<h3 class="text-xl font-bold text-white mb-4">免费额度与限制</h3>
+<ul class="space-y-2 text-slate-300 list-disc list-inside mb-6">
+<li><strong>免费额度</strong>：官方提供免费层级，Gemini 1.5 Pro / Flash 等模型通常有每日请求限额（如 50-100 次/天，具体视政策而定）。</li>
+<li><strong>核心限制</strong>：免费版有严格的 <strong>TPM (Tokens Per Minute)</strong> 和 <strong>RPM (Requests Per Minute)</strong> 限制。在处理长文档或高频调用时，很容易遇到 <code>429 Too Many Requests</code> 错误。</li>
+<li><strong>数据隐私</strong>：免费版的输入数据可能会被 Google 用于改进模型（训练），因此<strong>不建议用于处理敏感数据</strong>。</li>
+</ul>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6">二、Gemini API 价格与购买方案对比</h2>
+<div class="overflow-x-auto mb-8">
+<table class="w-full text-left text-sm text-slate-300">
+<thead class="bg-slate-800 text-white uppercase font-bold">
+<tr>
+<th class="px-6 py-3">方案类型</th>
+<th class="px-6 py-3">计费方式</th>
+<th class="px-6 py-3">优点</th>
+<th class="px-6 py-3">缺点</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/10">
+<tr class="bg-white/5">
+<td class="px-6 py-4 font-medium text-white">官方付费版 (Pay-as-you-go)</td>
+<td class="px-6 py-4">按 Token 计费<br/>(~$3.5 / 1M input)</td>
+<td class="px-6 py-4">官方稳定、数据隐私保障、更高的速率限制</td>
+<td class="px-6 py-4">需绑定外币卡、需海外网络、价格较贵</td>
+</tr>
+<tr>
+<td class="px-6 py-4 font-medium text-white">第三方中转 API</td>
+<td class="px-6 py-4">按量/套餐<br/>(通常比官方便宜)</td>
+<td class="px-6 py-4">国内直连、支持支付宝/微信、无需梯子</td>
+<td class="px-6 py-4">需甄别服务商稳定性、数据经由中转</td>
+</tr>
+<tr class="bg-white/5">
+<td class="px-6 py-4 font-medium text-white">自建反代</td>
+<td class="px-6 py-4">免费 + 服务器成本</td>
+<td class="px-6 py-4">完全独享、数据安全</td>
+<td class="px-6 py-4">有一定的技术门槛、需维护</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6">三、为什么开发者首选 Gemini 3.0 Pro API？</h2>
+<p class="text-slate-300 mb-6">根据最新的基准测试与成本分析，Gemini 3.0 Pro 在性能与性价比上均超越了 GPT-4o。对于构建商业应用或高频调用的开发者来说，优势明显。</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+  <div class="bg-slate-800/50 p-6 rounded-xl border border-white/5">
+    <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-sack-dollar text-green-400"></i> 极致性价比</h3>
+    <ul class="space-y-3 text-sm text-slate-300">
+      <li class="flex justify-between border-b border-white/5 pb-2"><span>混合任务成本</span> <span class="text-green-400 font-bold">比 GPT-4o 低 32.5%</span></li>
+      <li class="flex justify-between border-b border-white/5 pb-2"><span>长文本分析</span> <span class="text-green-400 font-bold">便宜 65% (无需分段)</span></li>
+      <li class="flex justify-between"><span>输入价格</span> <span class="text-white font-mono">$3.50 / 1M tokens</span></li>
+    </ul>
+  </div>
+  <div class="bg-slate-800/50 p-6 rounded-xl border border-white/5">
+    <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="fa-solid fa-bolt text-yellow-400"></i> 性能跨代飞跃</h3>
+    <ul class="space-y-3 text-sm text-slate-300">
+      <li class="flex justify-between border-b border-white/5 pb-2"><span>API 响应延迟</span> <span class="text-white font-bold">1.8s (提速 30%)</span></li>
+      <li class="flex justify-between border-b border-white/5 pb-2"><span>上下文窗口</span> <span class="text-white font-bold">100万 Tokens</span></li>
+      <li class="flex justify-between"><span>视觉问答 (VQA)</span> <span class="text-white font-bold">94.2% 准确率</span></li>
+    </ul>
+  </div>
+</div>
+
+<h2 class="text-2xl font-bold text-white mt-12 mb-6">四、国内直连解决方案</h2>
+<p>如果你已经有了官方 API Key，但在国内调用时遇到连接超时问题，可以使用以下两种方法实现直连。</p>
+<h3 class="text-xl font-bold text-white mb-4">1. 自建 Cloudflare Worker 反代 (技术方案)</h3>
+<p>利用 Cloudflare 免费的 Workers 服务，可以搭建一个专属的 API 转发通道。</p>
+<div class="bg-slate-900 rounded-xl border border-white/10 overflow-hidden mb-6">
+<div class="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/5">
+<span class="text-xs font-mono text-slate-400">worker.js</span>
+<button class="text-xs text-cyan-400 hover:text-white transition" onclick="copyCode(this)"><i class="fa-regular fa-copy mr-1"></i> 复制代码</button>
+</div>
+<pre class="m-0 p-4 overflow-x-auto"><code class="language-javascript">export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    // 将请求转发到 Google 的 API 域名
+    url.hostname = 'generativelanguage.googleapis.com';
+    
+    const newRequest = new Request(url, {
+      method: request.method,
+      headers: request.headers,
+      body: request.body
+    });
+
+    try {
+      const response = await fetch(newRequest);
+      return response;
+    } catch (e) {
+      return new Response(JSON.stringify({ error: e.message }), { status: 500 });
+    }
+  }
+}</code></pre>
+</div>
+<p class="text-sm text-slate-400 mb-6">
+<strong>配置方法：</strong> 登录 Cloudflare -> Workers & Pages -> Create Application -> Create Worker，将上述代码粘贴进去并部署。你将获得一个 <code>xxx.workers.dev</code> 的域名，在代码中将 API Base URL 替换为该域名即可。
+            </p>
+<h3 class="text-xl font-bold text-white mb-4">2. 使用 API 中转平台 (便捷方案)</h3>
+<p>如果你不想折腾代码，或者没有外币卡支付官方账单，选择正规的 API 中转平台是最优解。</p>
+<ul class="space-y-2 text-slate-300 list-disc list-inside">
+<li><strong>推荐理由</strong>：Gemini-VIP 等平台通常提供企业级并发支持，且价格往往优于个人直接购买（因为有企业折扣）。</li>
+<li><strong>使用方式</strong>：购买额度包 -> 获取中转 API Key -> 将 Base URL 修改为中转商提供的地址（如 <code>https://api.gemini-vip.top</code>）。</li>
+<li><strong>独享 Key</strong>：部分平台提供“独享 Key”服务，即帮你代申请官方 Key 并管理，既享受官方稳定性，又解决了支付和网络问题。</li>
+</ul>
+<h2 class="text-2xl font-bold text-white mt-12 mb-6">五、安全使用建议</h2>
+<div class="bg-red-900/10 border border-red-500/20 rounded-xl p-6 space-y-4">
+<div>
+<h4 class="font-bold text-red-400 mb-1"><i class="fa-solid fa-user-shield mr-2"></i> API Key 安全</h4>
+<p class="text-sm text-slate-300">永远不要将 API Key 直接硬编码在客户端代码（如前端 JS、Android App）中，容易被抓包窃取。请务必在后端服务器发起调用。</p>
+</div>
+<div>
+<h4 class="font-bold text-red-400 mb-1"><i class="fa-solid fa-wallet mr-2"></i> 成本控制</h4>
+<p class="text-sm text-slate-300">Gemini Pro 的 token 消耗很快。建议在开发阶段使用 Flash 模型（更便宜），生产环境再切换到 Pro。同时设置 Usage Limit（用量限制），防止意外产生高额账单。</p>
+</div>
+</div>
+<div class="mt-12 p-8 bg-gradient-to-r from-cyan-900/40 to-blue-900/40 rounded-3xl border border-cyan-500/30 text-center">
+<h3 class="text-2xl font-bold text-white mb-4">需要企业级稳定 API？</h3>
+<p class="text-slate-300 mb-8 max-w-lg mx-auto">Gemini-VIP 提供高并发、低延迟的 API 中转服务，专注支持 Google Gemini 3.0 Pro 模型。企业级渠道，稳定防封。</p>
+<a class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-black font-bold text-lg hover:bg-slate-200 transition shadow-lg hover:shadow-xl hover:-translate-y-1" href="/go/api" target="_blank">
+              获取 API 方案 <i class="fa-solid fa-arrow-right ml-2"></i>
+</a>
+</div>
+</div>
+</article>
+<!-- Sidebar -->
+<aside class="lg:col-span-1 relative">
+<div class="sticky top-24 space-y-8">
+<div class="group relative rounded-3xl bg-[#0B0F19] border border-white/10 overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(8,145,178,0.15)] transition-all duration-500">
+<div class="absolute -inset-[1px] bg-gradient-to-b from-cyan-500 via-blue-500 to-transparent rounded-3xl opacity-30 group-hover:opacity-100 transition duration-700"></div>
+<div class="relative bg-[#0B0F19] rounded-[23px] overflow-hidden p-6 h-full">
+<div class="flex justify-between items-center mb-6">
+<span class="bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">Developer Choice</span>
+<span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span></span>
+</div>
+<div class="mb-6 relative h-32 rounded-xl bg-gradient-to-br from-slate-800 to-slate-900 border border-white/5 flex items-center justify-center overflow-hidden group-hover:border-cyan-500/30 transition">
+<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+<i class="fa-solid fa-code text-5xl text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-400 group-hover:scale-110 transition duration-500"></i>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">Gemini API 额度</h3>
+<p class="text-xs text-slate-400 mb-6 border-b border-white/5 pb-4">GCP 激活 · $50 额度 · 独享权限</p>
+<div class="flex items-end justify-between mb-6">
+<div>
+<div class="text-3xl font-black text-white tracking-tight">¥394<span class="text-sm font-normal text-slate-500 ml-1">/次</span></div><div class="text-xs text-slate-500 line-through mt-1">原价 ¥420</div></div><div class="text-right"><div class="text-[10px] text-cyan-400 font-bold bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20">已省 ¥26</div></div></div>
+<ul class="space-y-3 mb-6">
+<li class="flex items-center gap-3 text-sm text-slate-300"><i class="fa-brands fa-google text-cyan-400"></i> 充入您自己的 Google 账号</li>
+<li class="flex items-center gap-3 text-sm text-slate-300"><i class="fa-solid fa-coins text-cyan-400"></i> $50 实打实可用余额</li>
+<li class="flex items-center gap-3 text-sm text-slate-300"><i class="fa-solid fa-bolt text-yellow-400"></i> 企业级渠道，稳定防封</li>
+</ul>
+<a class="relative w-full block group/btn overflow-hidden rounded-xl bg-white text-black font-bold text-center py-3.5 transition-all hover:scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.3)]" href="/go/api" target="_blank"><div class="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 opacity-0 group-hover/btn:opacity-20 transition duration-300"></div><span class="relative flex items-center justify-center gap-2">获取 API 额度 <i class="fa-solid fa-arrow-right -rotate-45 group-hover/btn:rotate-0 transition-transform"></i></span></a>
+<div class="mt-4 text-center"><span class="text-[10px] text-slate-600 flex items-center justify-center gap-1"><i class="fa-solid fa-shield-halved"></i> 官方正规 · 售后无忧</span></div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<footer class="relative border-t border-white/10 bg-[#020617] pt-20 pb-10 overflow-hidden">
+    <div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[128px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[128px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16 border-b border-white/5 pb-12">
+            
+            <div class="lg:col-span-4 space-y-6">
+                <a class="flex items-center gap-2 group w-fit" href="/">
+                    <div class="relative w-8 h-8 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-purple-500/20 blur-md rounded-full group-hover:bg-purple-500/40 transition"></div>
+                        <svg class="relative w-full h-full text-white" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="url(#footer-gradient)"></path>
+                            <defs>
+                                <lineargradient id="footer-gradient" x1="2" x2="22" y1="2" y2="22">
+                                    <stop stop-color="#60A5FA"></stop><stop offset="1" stop-color="#C084FC"></stop>
+                                </lineargradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-xl text-white tracking-tight">GEMINI-VIP<span class="text-purple-400 font-light">.TOP</span></span>
+                </a>
+                
+                <p class="text-slate-400 text-sm leading-relaxed pr-4">
+                    专注于为专业人士提供稳定、合规的 Google Gemini Advanced 会员服务。解锁 AI 生产力，从拥有一个稳定的账号开始。
+                </p>
+
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-green-500/5 border border-green-500/10 rounded-full w-fit">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="text-xs font-mono font-medium text-green-400">Automatic Delivery Online</span>
+                </div>
+
+                <div class="flex gap-4 pt-2">
+                    <div class="relative group">
+                        <a class="w-8 h-8 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 hover:bg-white/10 hover:text-white hover:border-white/20 transition duration-300" href="mailto:support@gemini-vip.top" aria-label="Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                        <div class="absolute bottom-full left-0 mb-2 px-3 py-1.5 bg-slate-800 text-white text-xs font-mono rounded-lg border border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 whitespace-nowrap z-20"> 
+                            support@gemini-vip.top 
+                            <div class="absolute top-full left-4 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-slate-800"></div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">产品服务</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#pricing">Gemini 成品号</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#pricing">会员代充</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#pricing">API 额度包</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/#features">核心权益</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">客户支持</h4>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/about">关于我们</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#terms">服务条款</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#privacy">隐私政策</a></li>
+                        <li><a class="hover:text-purple-400 transition block hover:translate-x-1 duration-300" href="/legal#refund">退款政策</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider">安全支付</h4>
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="aspect-square rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500/50 transition group" title="Alipay">
+                            <i class="fa-brands fa-alipay text-2xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="aspect-square rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-green-500 hover:border-green-500/50 transition group" title="WeChat Pay">
+                            <i class="fa-brands fa-weixin text-2xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="aspect-square rounded-xl bg-slate-900 border border-white/10 flex items-center justify-center text-slate-400 hover:text-green-400 hover:border-green-400/50 transition group" title="USDT / Crypto">
+                            <i class="fa-brands fa-bitcoin text-2xl group-hover:scale-110 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-slate-600">
+            <div class="flex flex-col gap-2 max-w-2xl">
+                <p>&copy; 2026 Gemini-VIP.top. All rights reserved.</p>
+                <p class="opacity-60 leading-relaxed text-justify">
+                    Disclaimer: Gemini-VIP.top is an independent third-party service provider. All product names, logos, and brands (including Google, Gemini, Google One) are property of their respective owners. We are not affiliated with, associated with, or endorsed by Google Inc.
+                </p>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+                <span>Made for AI Future</span>
+                <span class="mx-1 text-slate-700">•</span>
+                <a href="/sitemap" class="text-slate-600 hover:text-slate-400 transition">网站地图</a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    function copyCode(btn) {
+      // 检查是复制优惠码还是代码块
+      const isPromo = btn.innerText.includes('xmpick') || (btn.querySelector('.text-white') && btn.querySelector('.text-white').innerText === 'xmpick');
+      let code = '';
+      
+      if (isPromo) {
+          code = 'xmpick';
+      } else {
+          // 查找代码块
+          const codeBlock = btn.parentElement.querySelector('code');
+          if (codeBlock) {
+              code = codeBlock.innerText;
+          } else {
+              // 备用：尝试找兄弟元素中的 code
+               const siblingPre = btn.parentElement.nextElementSibling;
+               if(siblingPre && siblingPre.tagName === 'PRE') {
+                   code = siblingPre.querySelector('code').innerText;
+               }
+          }
+      }
+
+      if(code) {
+        navigator.clipboard.writeText(code).then(() => {
+            const icon = btn.querySelector('i');
+            if(icon) {
+                const originalClass = icon.className;
+                icon.className = 'fa-solid fa-check text-green-400';
+                setTimeout(() => {
+                  icon.className = originalClass;
+                }, 2000);
+            }
+        });
+      }
+    }
+    
+    // 视觉动效
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); 
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('section, h2, .glass-card, footer').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+    });
+</script>
+</body>
+</html>
