@@ -62,6 +62,7 @@ POST_CONFIG = {
     'gemini-ppt-prompts': {'color': 'pink', 'icon': 'fa-file-powerpoint', 'category': 'Prompt教程'},
     'gemini-api-key-guide': {'color': 'cyan', 'icon': 'fa-key', 'category': 'API教程'},
     'gemini-quota-guide': {'color': 'cyan', 'icon': 'fa-chart-pie', 'category': 'API教程'},
+    'gemini-chrome-guide': {'color': 'blue', 'icon': 'fa-brands fa-chrome', 'category': '新功能'},
     'gemini-generative-ui-guide': {'color': 'pink', 'icon': 'fa-palette', 'category': '新功能'},
     'choose-model-cn': {'color': 'violet', 'icon': 'fa-robot', 'category': '模型选型'},
     'gemini-vs-chatgpt-vs-grok': {'color': 'yellow', 'icon': 'fa-scale-balanced', 'category': '竞品对比'},
@@ -411,6 +412,50 @@ def optimize_sales_card(soup):
 
     return soup
 
+def enforce_seo_rules(soup):
+    """
+    Enforces SEO rules:
+    1. Adds rel="nofollow sponsored noopener noreferrer" to all /go/ links.
+    2. Enforces Pyramid Model: Replaces Sales CTAs pointing to /go/xxx with /#pricing.
+    """
+    for a in soup.find_all('a', href=True):
+        href = a['href']
+        
+        # Rule 1: Affiliate Link Attributes
+        if href.startswith('/go/'):
+            # Ensure correct rel attributes
+            rel = a.get('rel', [])
+            # Normalize rel to list if it's a string
+            if isinstance(rel, str):
+                rel = rel.split()
+            
+            required_rels = ['nofollow', 'sponsored', 'noopener', 'noreferrer']
+            for r in required_rels:
+                if r not in rel:
+                    rel.append(r)
+            a['rel'] = rel
+            
+            # Rule 2: Pyramid Model Enforcement (Sales CTA -> Homepage)
+            # Check if this looks like a primary CTA button
+            text = a.get_text(strip=True)
+            # Keywords that imply a direct purchase action
+            cta_keywords = ['立即开通', '立即购买', '立即上车', '查看方案', '获取API', '立即升级', '查看价格']
+            
+            # Check if text matches keywords OR if it has button-like classes
+            is_cta_text = any(kw in text for kw in cta_keywords)
+            
+            # Simplified check: If it's a /go/ link AND has CTA text, redirect to pricing
+            # Exception: API links might need to go to /go/api directly if specific, but generally #pricing is safer for weight
+            # Exception: "获取 API 额度" usually goes to #pricing too in our model
+            
+            if is_cta_text and href != '/#pricing':
+                # Check for specific exceptions? 
+                # For now, enforce pyramid model strictly for these keywords
+                print(f"  [SEO Auto-Fix] Redirecting CTA '{text}' from {href} to /#pricing")
+                a['href'] = '/#pricing'
+
+    return soup
+
 def process_file(filepath, template_content, all_posts):
     print(f"Processing file: {filepath}")
     try:
@@ -435,6 +480,9 @@ def process_file(filepath, template_content, all_posts):
         
         # --- Optimize Sales Card ---
         soup = optimize_sales_card(soup)
+        
+        # --- Enforce SEO Rules (New) ---
+        soup = enforce_seo_rules(soup)
         
     except Exception as e:
         print(f"Error parsing soup for {filepath}: {e}")
