@@ -10,13 +10,31 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 BLOG_DIR = os.path.join(ROOT_DIR, 'blog')
 EXTENSIONS = {'.html'}
 
-class LinkExtractor(HTMLParser):
+class PageParser(HTMLParser):
     def __init__(self):
         super().__init__()
         self.links = [] # (href, rel, text, classes)
         self.current_link = None
+        
+        # Metadata
+        self.page_title = None
+        self.page_description = None
+        self._in_title = False
+        self._title_buffer = []
 
     def handle_starttag(self, tag, attrs):
+        # Metadata Extraction
+        if tag == 'title':
+            self._in_title = True
+            self._title_buffer = []
+        elif tag == 'meta':
+            # Check for description
+            # Convert attrs to dict for easier access
+            attrs_dict = {k.lower(): v for k, v in attrs if v is not None}
+            if attrs_dict.get('name', '').lower() == 'description':
+                self.page_description = attrs_dict.get('content', '').strip()
+
+        # Link Extraction
         if tag == 'a':
             href = None
             rel = None
@@ -38,10 +56,23 @@ class LinkExtractor(HTMLParser):
                 }
 
     def handle_data(self, data):
+        # Metadata
+        if self._in_title:
+            self._title_buffer.append(data)
+
+        # Link
         if self.current_link is not None:
             self.current_link['text'].append(data)
 
     def handle_endtag(self, tag):
+        # Metadata
+        if tag == 'title':
+            self._in_title = False
+            full_title = ''.join(self._title_buffer).strip()
+            if full_title:
+                self.page_title = full_title
+        
+        # Link
         if tag == 'a' and self.current_link is not None:
             full_text = ''.join(self.current_link['text']).strip()
             self.links.append((
@@ -205,6 +236,15 @@ def main():
     redirect_usage = defaultdict(list) # redirect_url -> list((source_url, rel))
     pyramid_violations = [] # (source_file, link_text, href)
     
+    # TDK Data
+    page_titles = {} # url -> title
+    page_descriptions = {} # url -> description
+    duplicate_titles = defaultdict(list) # title -> list(urls)
+    duplicate_descriptions = defaultdict(list) # description -> list(urls)
+    missing_titles = [] # list(url)
+    missing_descriptions = [] # list(url)
+    short_descriptions = [] # list((url, desc_len))
+    
     # Scanning
     for f in files:
         source_url = file_path_to_url(f)
@@ -212,8 +252,29 @@ def main():
             with open(f, 'r', encoding='utf-8') as file_obj:
                 content = file_obj.read()
                 
-            parser = LinkExtractor()
+            parser = PageParser()
             parser.feed(content)
+            
+            # TDK Analysis
+            # Exclude utility pages from TDK strict audit
+            is_content_page = True
+            if source_url in ['/404', '/sitemap', '/legal'] or source_url.startswith('/google'):
+                is_content_page = False
+            
+            if is_content_page:
+                if parser.page_title:
+                    page_titles[source_url] = parser.page_title
+                    duplicate_titles[parser.page_title].append(source_url)
+                else:
+                    missing_titles.append(source_url)
+                    
+                if parser.page_description:
+                    page_descriptions[source_url] = parser.page_description
+                    duplicate_descriptions[parser.page_description].append(source_url)
+                    if len(parser.page_description) < 100:
+                        short_descriptions.append((source_url, len(parser.page_description)))
+                else:
+                    missing_descriptions.append(source_url)
             
             for href, rel, text, classes in parser.links:
                 # 1. Dirty Check
@@ -500,6 +561,55 @@ def main():
     else:
         print("  ✅ All sitemap URLs exist on disk.")
 
+    # 6. TDK Health Check
+    print("\n📝 TDK Health Check (Titles & Descriptions):")
+    
+    # Process Duplicates
+    real_dup_titles = {t: urls for t, urls in duplicate_titles.items() if len(urls) > 1}
+    real_dup_descs = {d: urls for d, urls in duplicate_descriptions.items() if len(urls) > 1}
+    
+    has_tdk_issues = False
+    
+    if real_dup_titles:
+        has_tdk_issues = True
+        print(f"  🔴 Found {len(real_dup_titles)} sets of DUPLICATE Titles:")
+        for title, urls in real_dup_titles.items():
+            print(f"    - \"{title}\" used on {len(urls)} pages:")
+            for u in sorted(urls)[:3]: # limit to 3 examples
+                print(f"      * {u}")
+            if len(urls) > 3: print(f"      * ... and {len(urls)-3} more")
+
+    if real_dup_descs:
+        has_tdk_issues = True
+        print(f"  🔴 Found {len(real_dup_descs)} sets of DUPLICATE Descriptions:")
+        for desc, urls in real_dup_descs.items():
+            short_desc = (desc[:60] + '...') if len(desc) > 60 else desc
+            print(f"    - \"{short_desc}\" used on {len(urls)} pages:")
+            for u in sorted(urls)[:3]:
+                print(f"      * {u}")
+            if len(urls) > 3: print(f"      * ... and {len(urls)-3} more")
+
+    if missing_titles:
+        has_tdk_issues = True
+        print(f"  ⚠️  Missing Titles on {len(missing_titles)} pages:")
+        for u in sorted(missing_titles):
+             print(f"    - {u}")
+
+    if missing_descriptions:
+        has_tdk_issues = True
+        print(f"  ⚠️  Missing Descriptions on {len(missing_descriptions)} pages:")
+        for u in sorted(missing_descriptions):
+             print(f"    - {u}")
+
+    if short_descriptions:
+        has_tdk_issues = True
+        print(f"  ⚠️  Short Descriptions (<100 chars) on {len(short_descriptions)} pages:")
+        for u, l in sorted(short_descriptions):
+             print(f"    - {u} ({l} chars)")
+
+    if not has_tdk_issues:
+        print("  ✅ TDK Health is perfect! No duplicates, missing, or short meta tags.")
+
     # 7. SEO Health Score
     print("\n" + "="*50)
     print("🏆 SEO HEALTH SCORE")
@@ -554,6 +664,35 @@ def main():
         points = len(pyramid_violations) * 5
         score -= points
         deductions.append(f"-{points} pts: {len(pyramid_violations)} Pyramid Model Violations (High Impact)")
+
+    # 7. TDK Violations
+    if real_dup_titles:
+        # Heavy penalty for duplicate titles
+        count = sum(len(urls) - 1 for urls in real_dup_titles.values()) # Count excess duplicates
+        points = count * 10
+        score -= points
+        deductions.append(f"-{points} pts: {count} Duplicate Titles (Severe Impact)")
+
+    if real_dup_descs:
+        count = sum(len(urls) - 1 for urls in real_dup_descs.values())
+        points = count * 5
+        score -= points
+        deductions.append(f"-{points} pts: {count} Duplicate Descriptions (High Impact)")
+        
+    if missing_titles:
+        points = len(missing_titles) * 10
+        score -= points
+        deductions.append(f"-{points} pts: {len(missing_titles)} Missing Titles (Severe Impact)")
+
+    if missing_descriptions:
+        points = len(missing_descriptions) * 5
+        score -= points
+        deductions.append(f"-{points} pts: {len(missing_descriptions)} Missing Descriptions (Medium Impact)")
+        
+    if short_descriptions:
+        points = len(short_descriptions) * 2
+        score -= points
+        deductions.append(f"-{points} pts: {len(short_descriptions)} Short Descriptions (Low Impact)")
 
     # Cap score
     score = max(0, score)

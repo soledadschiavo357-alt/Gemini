@@ -5,8 +5,8 @@
 <meta charset="utf-8"/>
 
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Gemini 3 提示词最佳实践：日常使用指南 - Gemini-VIP.top</title>
-<meta content="Gemini 3 Pro 提示词编写指南。掌握核心原则、结构化提示词技巧（XML/Markdown）、以及针对研究、写作、解题等场景的专用模板。" name="description"/>
+<title>Gemini 3 提示词最佳实践： 日常使用指南</title>
+<meta content="Gemini 3.0 提示词怎么写？本文针对 Gemini 3.0 模型的最新特性，整理了一系列高效的 Prompt 技巧和实战模板，涵盖多模态输入解析、长文本上下文处理及复杂逻辑推理任务，教您如何通过精准的指令设计，充分释放 Google 最强 AI 模型的潜力。" name="description"/>
 <meta content="Gemini 3, 提示词, Prompt, 最佳实践, AI指令, 结构化提示词, Gemini 3.0 Pro" name="keywords"/>
 <link href="https://gemini-vip.top/blog/gemini-3-prompt-guide" rel="canonical"/>
 
@@ -14,7 +14,7 @@
 <meta content="global" name="distribution" />
 
 <meta content="Gemini 3 提示词最佳实践： 日常使用指南" property="og:title"/>
-<meta content="Gemini 3 Pro 提示词编写指南。掌握核心原则、结构化提示词技巧（XML/Markdown）、以及针对研究、写作、解题等场景的专用模板。" property="og:description"/>
+<meta content="Gemini 3.0 提示词怎么写？本文针对 Gemini 3.0 模型的最新特性，整理了一系列高效的 Prompt 技巧和实战模板，涵盖多模态输入解析、长文本上下文处理及复杂逻辑推理任务，教您如何通过精准的指令设计，充分释放 Google 最强 AI 模型的潜力。" property="og:description"/>
 <meta content="article" property="og:type"/>
 <meta content="https://gemini-vip.top/blog/gemini-3-prompt-guide" property="og:url"/>
 <meta content="https://gemini-vip.top/assets/logo.png" property="og:image"/>
@@ -22,7 +22,7 @@
 <meta content="zh_CN" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Gemini 3 提示词最佳实践： 日常使用指南" name="twitter:title"/>
-<meta content="Gemini 3 Pro 提示词编写指南。掌握核心原则、结构化提示词技巧（XML/Markdown）、以及针对研究、写作、解题等场景的专用模板。" name="twitter:description"/>
+<meta content="Gemini 3.0 提示词怎么写？本文针对 Gemini 3.0 模型的最新特性，整理了一系列高效的 Prompt 技巧和实战模板，涵盖多模态输入解析、长文本上下文处理及复杂逻辑推理任务，教您如何通过精准的指令设计，充分释放 Google 最强 AI 模型的潜力。" name="twitter:description"/>
 <meta content="https://gemini-vip.top/assets/logo.png" name="twitter:image"/>
 <!-- Social Extra -->
 <meta content="@GeminiVIP" name="twitter:site"/>
@@ -92,7 +92,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Gemini 3 提示词最佳实践： 日常使用指南",
-  "description": "Gemini 3 Pro 提示词编写指南。掌握核心原则、结构化提示词技巧（XML/Markdown）、以及针对研究、写作、解题等场景的专用模板。",
+  "description": "Gemini 3.0 提示词怎么写？本文针对 Gemini 3.0 模型的最新特性，整理了一系列高效的 Prompt 技巧和实战模板，涵盖多模态输入解析、长文本上下文处理及复杂逻辑推理任务，教您如何通过精准的指令设计，充分释放 Google 最强 AI 模型的潜力。",
   "datePublished": "2026-01-19",
   "dateModified": "2026-01-19",
   "url": "https://gemini-vip.top/blog/gemini-3-prompt-guide",
@@ -433,7 +433,7 @@
 <div class="sticky top-32 space-y-8 mt-0 mt-12 mb-12">
 <div class="group relative rounded-3xl bg-[#0B0F19] border border-white/10 overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] transition-all duration-500">
 <div class="absolute -inset-[1px] bg-gradient-to-b from-blue-500 via-purple-500 to-transparent rounded-3xl opacity-30 group-hover:opacity-100 transition duration-700"></div>
-<div class="relative bg-[#0B0F19] rounded-[23px] overflow-hidden px-5 py-4 h-full px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4">
+<div class="relative bg-[#0B0F19] rounded-[23px] overflow-hidden px-5 py-4 h-full px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4 px-5 py-4">
 <div class="flex justify-between items-center mb-3">
 <span class="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">Best Value</span>
 <span class="flex h-2 w-2 relative"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>

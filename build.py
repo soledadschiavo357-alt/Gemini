@@ -40,37 +40,204 @@ DEFAULT_ICONS = ['fa-robot', 'fa-star', 'fa-bolt', 'fa-book', 'fa-layer-group', 
 
 # Centralized Post Configuration for Consistency
 POST_CONFIG = {
-    'gemini-student-discount': {'color': 'emerald', 'icon': 'fa-graduation-cap', 'category': '教育优惠'},
-    'is-gemini-worth-it': {'color': 'cyan', 'icon': 'fa-scale-balanced', 'category': '深度评测'},
-    'gemini-pro-prompts': {'color': 'purple', 'icon': 'fa-wand-magic-sparkles', 'category': 'Prompt教程'},
-    'gemini-version-guide': {'color': 'blue', 'icon': 'fa-code-branch', 'category': '版本指南'},
-    'gemini-membership-guide': {'color': 'orange', 'icon': 'fa-gem', 'category': '会员攻略'},
-    'gemini-account-purchase-guide': {'color': 'orange', 'icon': 'fa-cart-shopping', 'category': '会员攻略'},
-    'gemini-account-appeal-guide': {'color': 'red', 'icon': 'fa-file-shield', 'category': '故障排除'},
-    'gemini-registration-guide': {'color': 'cyan', 'icon': 'fa-user-plus', 'category': '新手教程'},
-    'gemini-shared-account-guide': {'color': 'orange', 'icon': 'fa-users', 'category': '会员攻略'},
-    'how-to-use-gemini-3': {'color': 'indigo', 'icon': 'fa-book-open', 'category': '新手教程'},
-    'gemini-veo-video-review': {'color': 'pink', 'icon': 'fa-video', 'category': '视频生成'},
-    'gemini-image-generator-guide': {'color': 'pink', 'icon': 'fa-palette', 'category': 'AI绘图'},
-    'gemini-banana-guide': {'color': 'yellow', 'icon': 'fa-palette', 'category': 'AI绘图'},
-    'gemini-balance-guide': {'color': 'emerald', 'icon': 'fa-server', 'category': 'API教程'},
-    'benefits': {'color': 'red', 'icon': 'fa-gift', 'category': '会员权益'},
-    'gemini-region-error-fix': {'color': 'slate', 'icon': 'fa-wrench', 'category': '故障排除'},
-    'gemini-subscription-error-fix': {'color': 'slate', 'icon': 'fa-circle-exclamation', 'category': '故障排除'},
-    'gemini-app-download': {'color': 'blue', 'icon': 'fa-download', 'category': '下载指南'},
-    'guide-cn': {'color': 'teal', 'icon': 'fa-language', 'category': '中文指南'},
-    'gemini-3-prompt-guide': {'color': 'purple', 'icon': 'fa-wand-magic-sparkles', 'category': 'Prompt教程'},
-    'gemini-metaphysics-prompts': {'color': 'indigo', 'icon': 'fa-yin-yang', 'category': 'Prompt教程'},
-    'gemini-ppt-prompts': {'color': 'pink', 'icon': 'fa-file-powerpoint', 'category': 'Prompt教程'},
-    'gemini-api-key-guide': {'color': 'cyan', 'icon': 'fa-key', 'category': 'API教程'},
-    'gemini-quota-guide': {'color': 'cyan', 'icon': 'fa-chart-pie', 'category': 'API教程'},
-    'gemini-chrome-guide': {'color': 'blue', 'icon': 'fa-brands fa-chrome', 'category': '新功能'},
-    'gemini-generative-ui-guide': {'color': 'pink', 'icon': 'fa-palette', 'category': '新功能'},
-    'choose-model-cn': {'color': 'violet', 'icon': 'fa-robot', 'category': '模型选型'},
-    'gemini-vs-chatgpt-vs-grok': {'color': 'yellow', 'icon': 'fa-scale-balanced', 'category': '竞品对比'},
-    'comparison': {'color': 'yellow', 'icon': 'fa-not-equal', 'category': '竞品对比'},
-    'pro-vs-free': {'color': 'green', 'icon': 'fa-circle-half-stroke', 'category': '版本对比'},
-    'gemini-notebook-lm-guide': {'color': 'blue', 'icon': 'fa-book-open', 'category': '效率工具'}
+    'gemini-student-discount': {
+        'color': 'emerald', 
+        'icon': 'fa-graduation-cap', 
+        'category': '教育优惠',
+        'description': 'Gemini 有学生优惠吗？本文为您整理 Google Gemini 及其相关服务（如 Google One、Workspace）的最新教育优惠政策，教您如何利用学生身份获取折扣或免费额度，以及其他替代的高性价比方案。'
+    },
+    'is-gemini-worth-it': {
+        'color': 'cyan', 
+        'icon': 'fa-scale-balanced', 
+        'category': '深度评测',
+        'description': 'Gemini Advanced 一年要 200 多美元，真的值吗？本文从实际使用场景出发，深度评测 Gemini 付费版在复杂代码编程、长篇创意写作及高级多模态处理等方面的表现，详细分析其在工作、学习及创作中的实际投入产出比，助您理性判断是否值得付费订阅。'
+    },
+    'gemini-pro-prompts': {
+        'color': 'purple', 
+        'icon': 'fa-wand-magic-sparkles', 
+        'category': 'Prompt教程',
+        'description': '如何写出高质量的 Gemini 提示词？本文精选了编程开发、文案写作、数据分析、角色扮演等多个高频场景的 Gemini Pro 高效 Prompt 模板，教您掌握提示词工程的核心技巧（如 CoT 思维链、Few-Shot），激发 AI 的最大潜力，输出更精准的结果。'
+    },
+    'gemini-version-guide': {
+        'color': 'blue', 
+        'icon': 'fa-code-branch', 
+        'category': '版本指南',
+        'description': 'Gemini 3.0 Pro, Flash, 2.5 Pro 哪个模型更强？本文深度对比各大版本差异，详细分析各版本的功能特点、性能表现及适用场景，提供免费版与 Pro 版的选择建议及安全使用指南，助您快速上手。'
+    },
+    'gemini-membership-guide': {
+        'color': 'orange', 
+        'icon': 'fa-gem', 
+        'category': '会员攻略',
+        'description': 'Gemini Advanced 会员值得买吗？本文深度解析 Gemini 高级会员的各项核心权益，详细对比免费版与付费版在模型能力、上下文窗口及响应速度上的差异，并分析 2TB Google One 云存储等附加福利，助您根据个人需求做出最明智的订阅决策。'
+    },
+    'gemini-account-purchase-guide': {
+        'color': 'orange', 
+        'icon': 'fa-cart-shopping', 
+        'category': '会员攻略',
+        'description': '想购买 Google Gemini 账号？本文为您详细解析 Gemini 账号的官方购买渠道与第三方平台价格对比，揭秘低价账号的风险，并提供安全避坑指南，教您如何以最优惠的价格获取稳定可靠的 Gemini Advanced 高级会员账号，享受 GPT-4 级别的 AI 体验。'
+    },
+    'gemini-account-appeal-guide': {
+        'color': 'red', 
+        'icon': 'fa-file-shield', 
+        'category': '故障排除',
+        'description': 'Google 账号被停用怎么办？本文提供最全的 Gemini 账号申诉与解封攻略，包含详细的申诉步骤图解、高成功率的英文申诉模板文案及关键注意事项，助您快速找回被误封的谷歌账号，恢复 Gemini Advanced 及其他 Google 服务的使用权限。'
+    },
+    'gemini-registration-guide': {
+        'color': 'cyan', 
+        'icon': 'fa-user-plus', 
+        'category': '新手教程',
+        'description': 'Google Gemini 怎么注册？本文提供 2026 最新版 Gemini 注册教程，手把手教您解决国内手机号无法验证、地区不支持等常见问题，助您快速注册并拥有自己的 Google 账号，无门槛开启 Gemini AI 之旅，享受谷歌最新的人工智能服务。'
+    },
+    'gemini-shared-account-guide': {
+        'color': 'orange', 
+        'icon': 'fa-users', 
+        'category': '会员攻略',
+        'description': 'Gemini 共享账号靠谱吗？本文深度分析 Gemini 拼车/共享账号的市场现状、风险与优势，揭秘低价账号背后的原理（如家庭组机制），并提供安全选购建议与避坑指南，助您避开封号雷区，以最低的成本享受 Gemini Advanced 高级会员的全部权益。'
+    },
+    'how-to-use-gemini-3': {
+        'color': 'indigo', 
+        'icon': 'fa-book-open', 
+        'category': '新手教程',
+        'description': 'Gemini 3.0 怎么用？本文为您带来 Gemini 3.0 模型的全方位使用教程，涵盖新功能演示、AI Studio 开发环境配置、API 调用方法及最佳实践案例，助您从零开始，抢先体验并掌握 Google 最强 AI 模型的强大能力，赋能工作与生活。'
+    },
+    'gemini-veo-video-review': {
+        'color': 'pink', 
+        'icon': 'fa-video', 
+        'category': '视频生成',
+        'description': 'Gemini Veo 视频生成模型效果如何？本文深度评测 Google 最新的 Veo 视频生成模型，展示其在 1080p 画质、动作连贯性、物理规律模拟及语义理解方面的实际表现，并与 Sora、Runway 等竞品进行横向对比，带您领略 AI 视频生成的最新进展。'
+    },
+    'gemini-image-generator-guide': {
+        'color': 'pink', 
+        'icon': 'fa-palette', 
+        'category': 'AI绘图',
+        'description': 'Google Gemini Image Generator 怎么用？本文详细介绍 Gemini 的 AI 绘图功能，包括最新 Imagen 3 模型的使用技巧、风格控制参数及高质量提示词指南，助您通过简单的文字描述，创作出媲美专业画师的 AI 艺术作品和商业素材。'
+    },
+    'gemini-banana-guide': {
+        'color': 'yellow', 
+        'icon': 'fa-palette', 
+        'category': 'AI绘图',
+        'description': 'Gemini Banana (Nano Banana) 图像模型怎么玩？本文深度解读 Google 最新的 Nano Banana Pro 模型，掌握角色一致性保持、智能图片编辑、2D 转 3D 手办生成等核心玩法，附带详细的 ComfyUI 工作流与使用教程。'
+    },
+    'gemini-balance-guide': {
+        'color': 'emerald', 
+        'icon': 'fa-server', 
+        'category': 'API教程',
+        'description': 'Gemini Balance 是什么？本文深度解析 Gemini Balance 开源项目，教您如何部署 Gemini API 负载均衡工具，实现多 Key 轮询、OpenAI 接口协议兼容及国内直连加速，大幅提升 API 服务的稳定性与响应速度。'
+    },
+    'benefits': {
+        'color': 'red', 
+        'icon': 'fa-gift', 
+        'category': '会员权益',
+        'description': 'Google One AI Premium 会员有哪些权益？本文详细盘点 Gemini Advanced 订阅包含的所有福利，从 2TB Google Drive 云空间到 Gemini for Workspace (Docs, Gmail) 集成，带您全面了解会员价值。'
+    },
+    'gemini-region-error-fix': {
+        'color': 'slate', 
+        'icon': 'fa-wrench', 
+        'category': '故障排除',
+        'description': '遇到“Gemini 在您所在的国家/地区不可用”怎么办？本文提供多种亲测有效的解决方案，包括网络环境优化、账号区域设置调整等，教您如何彻底解决 Gemini 地区限制问题，无需复杂的配置即可在国内流畅使用 Google Gemini 的所有功能。'
+    },
+    'gemini-subscription-error-fix': {
+        'color': 'slate', 
+        'icon': 'fa-circle-exclamation', 
+        'category': '故障排除',
+        'description': '订阅 Gemini Advanced 失败怎么办？本文汇总了常见的订阅报错代码（如 OR-CCSEH-05, OR-CCSEH-21）及对应的解决方法，涵盖支付方式被拒、账号风控解除等实战技巧，帮助您顺利完成支付，开通 Google 高级会员服务。'
+    },
+    'gemini-app-download': {
+        'color': 'blue', 
+        'icon': 'fa-download', 
+        'category': '下载指南',
+        'description': 'Gemini App 在哪里下载？本文提供 Google Gemini App 的最新安卓 APK 安装包及 iOS 版本下载安装教程，教您如何在手机上突破地区限制，成功安装并使用 Gemini 移动端应用，随时随地体验 Google 强大的 AI 助手服务。'
+    },
+    'guide-cn': {
+        'color': 'teal', 
+        'icon': 'fa-language', 
+        'category': '中文指南',
+        'description': 'Gemini 中文版使用指南来了！本文汇集了 Gemini 在国内使用的各类实用技巧，包括网络环境的最佳配置方案、中文提示词（Prompt）的优化策略及常见使用问题的解答，助您突破语言与地域障碍，在国内也能无障碍、高效地使用 Google Gemini。'
+    },
+    'gemini-3-prompt-guide': {
+        'color': 'purple', 
+        'icon': 'fa-wand-magic-sparkles', 
+        'category': 'Prompt教程',
+        'description': 'Gemini 3.0 提示词怎么写？本文针对 Gemini 3.0 模型的最新特性，整理了一系列高效的 Prompt 技巧和实战模板，涵盖多模态输入解析、长文本上下文处理及复杂逻辑推理任务，教您如何通过精准的指令设计，充分释放 Google 最强 AI 模型的潜力。'
+    },
+    'gemini-metaphysics-prompts': {
+        'color': 'indigo', 
+        'icon': 'fa-yin-yang', 
+        'category': 'Prompt教程',
+        'description': '用 Gemini 算命准不准？本文整理了大量经过验证的 Gemini 玄学提示词（Prompts），教您如何利用 AI 进行塔罗牌占卜、星座运势分析、周易算卦及解梦，探索人工智能与传统玄学的奇妙结合，为您提供独特的情感指引与趣味体验。'
+    },
+    'gemini-ppt-prompts': {
+        'color': 'pink', 
+        'icon': 'fa-file-powerpoint', 
+        'category': 'Prompt教程',
+        'description': '如何用 Gemini 快速制作 PPT？本文提供 6 套高效的 PPT 生成提示词（Prompts），教您如何让 AI 自动生成结构清晰的 PPT 大纲、演讲稿及幻灯片内容，并配合 Gamma 等工具实现一键排版，大幅提升演示文稿的制作效率，告别熬夜做课件。'
+    },
+    'gemini-api-key-guide': {
+        'color': 'cyan', 
+        'icon': 'fa-key', 
+        'category': 'API教程',
+        'description': 'Gemini API Key 如何申请？本文手把手教您免费获取 Google Gemini API Key，详细图解 Google AI Studio 控制台的操作流程，包含 API 调用配额限制说明、常见错误代码解析及环境配置教程，助开发者快速接入并构建 AI 应用。'
+    },
+    'gemini-quota-guide': {
+        'color': 'cyan', 
+        'icon': 'fa-chart-pie', 
+        'category': 'API教程',
+        'description': 'Gemini API 配额限制是多少？本文详细解读 Google Gemini API 的免费版与付费版在 RPM (每分钟请求数)、TPM (每分钟 Token 数) 及 RPD (每天请求数) 上的具体限制，教您如何申请提升配额及优化 API 调用策略，避免触流控。'
+    },
+    'gemini-chrome-guide': {
+        'color': 'blue', 
+        'icon': 'fa-brands fa-chrome', 
+        'category': '新功能',
+        'description': '如何在 Chrome 浏览器中直接使用 Gemini？本文介绍 Chrome 内置 Gemini Nano 模型的开启与使用方法，以及如何通过官方及第三方扩展程序快速调用 Gemini 助手，让您的浏览器秒变 AI 生产力工具，提升网页阅读与写作效率。'
+    },
+    'gemini-generative-ui-guide': {
+        'color': 'pink', 
+        'icon': 'fa-palette', 
+        'category': '新功能',
+        'description': 'Gemini Generative UI 生成式界面是什么？本文带您探索 Gemini 最新的 UI 生成能力，展示如何通过自然语言描述自动生成高质量的 React/HTML 网页界面代码，并支持实时预览与修改，大幅提升前端开发效率，让原型设计变得前所未有的简单。'
+    },
+    'choose-model-cn': {
+        'color': 'violet', 
+        'icon': 'fa-robot', 
+        'category': '模型选型',
+        'description': 'Gemini 1.5 Pro, Flash, Ultra 该选哪个？本文深度对比 Google Gemini 各系列模型的参数规格、性能表现、价格成本及适用场景，助您根据实际业务需求（如长文本分析、代码生成或多模态处理）做出最明智的模型选型决策。'
+    },
+    'gemini-vs-chatgpt-vs-grok': {
+        'color': 'yellow', 
+        'icon': 'fa-scale-balanced', 
+        'category': '竞品对比',
+        'description': 'Gemini, ChatGPT, Grok 谁才是最强 AI？本文横向对比三大主流 AI 模型，从逻辑推理能力、代码生成质量、创意写作水平及多模态理解等多维度进行深度评测与打分，助您根据自己的使用习惯和需求，选择最适合自己的 AI 智能助手。'
+    },
+    'comparison': {
+        'color': 'yellow', 
+        'icon': 'fa-not-equal', 
+        'category': '竞品对比',
+        'description': 'Gemini 3.0 vs GPT-4o 谁才是 2025 年的性价比之王？本文从逻辑推理、代码生成、创意写作及多模态理解等维度，全面横向对比 Gemini 与 GPT-4, Claude 3, Llama 3 等主流大模型的优劣势，为您提供客观、详实的 AI 模型选型参考。'
+    },
+    'pro-vs-free': {
+        'color': 'green', 
+        'icon': 'fa-circle-half-stroke', 
+        'category': '版本对比',
+        'description': 'Gemini 免费版够用吗？本文详细对比 Gemini 普通版与 Advanced 高级版在功能权益上的核心差异，分析在日常问答、专业工作辅助及创意创作等不同场景下的体验区别，助您根据自己的使用频率和需求深度，决定是否需要升级到付费版本。'
+    },
+    'gemini-notebook-lm-guide': {
+        'color': 'blue', 
+        'icon': 'fa-book-open', 
+        'category': '效率工具',
+        'description': 'NotebookLM 怎么用？本文深度解析 Google 这款基于 Gemini 1.5 Pro 的 AI 笔记应用，教您如何上传 PDF、文档及网页链接，生成智能摘要、构建问答索引及进行跨文档分析，轻松打造您的个人专属知识库，提升学习与研究效率。'
+    },
+    'gemini-deep-research-guide': {
+        'color': 'purple',
+        'icon': 'fa-star',
+        'category': '教程',
+        'description': '深入解析 Gemini Deep Research (深度研究) 功能。从工作原理、核心优势到保姆级使用教程，教你如何利用 AI 自动完成复杂课题研究、生成万字专业报告。无论是学术论文还是商业分析，Deep Research 都是学生和职场人不可或缺的效率神器。'
+    },
+    'gemini-live-guide': {
+        'color': 'purple',
+        'icon': 'fa-star',
+        'category': '教程',
+        'description': 'Gemini Live 全解析：实时语音对话功能怎么用？本文深度解读 Google Gemini Live 的多模态交互能力，涵盖实时语音问答、视觉理解及屏幕共享等核心玩法，并附带 API 接入教程与开发场景解析，带您体验下一代 AI 语音助手的流畅与智能。'
+    }
 }
 
 def get_template():
@@ -137,13 +304,6 @@ def get_post_metadata(filepath):
     card_sticky_match = re.search(r'<meta.*name="card-sticky".*content="([^"]*)".*>', content)
     card_sticky = int(card_sticky_match.group(1)) if card_sticky_match and card_sticky_match.group(1).isdigit() else 0
 
-    # Override with Central Config if available
-    if url in POST_CONFIG:
-        config = POST_CONFIG[url]
-        card_color = config.get('color', card_color)
-        card_icon = config.get('icon', card_icon)
-        card_category = config.get('category', card_category)
-
     # Extract Summary from description meta or p tag
     summary = ''
     desc_match = re.search(r'<meta.*name="description".*content="([^"]*)".*>', content)
@@ -151,6 +311,15 @@ def get_post_metadata(filepath):
         desc_match = re.search(r'<meta.*content="([^"]*)".*name="description".*>', content)
     if desc_match:
         summary = desc_match.group(1)
+
+    # Override with Central Config if available
+    if url in POST_CONFIG:
+        config = POST_CONFIG[url]
+        card_color = config.get('color', card_color)
+        card_icon = config.get('icon', card_icon)
+        card_category = config.get('category', card_category)
+        if 'description' in config:
+            summary = config['description']
     
     return {
         'title': title,
@@ -929,22 +1098,8 @@ def process_file(filepath, template_content, all_posts):
         
     src_canon = re.search(r'<link href="([^"]*)" rel="canonical"/>', content)
     
-    if src_title:
-        new_content = re.sub(r'<title>.*?</title>', src_title.group(0), new_content)
-    
-    if src_desc:
-        new_content = re.sub(r'<meta content="[^"]*" name="description"/>', src_desc.group(0), new_content)
-        new_content = re.sub(r'<meta name="description" content="[^"]*"/>', src_desc.group(0), new_content)
-        
-    if src_kw:
-        new_content = re.sub(r'<meta content="[^"]*" name="keywords"/>', src_kw.group(0), new_content)
-        new_content = re.sub(r'<meta name="keywords" content="[^"]*"/>', src_kw.group(0), new_content)
-        
-    if src_canon:
-        canon_tag = src_canon.group(0)
-        if '.html' in canon_tag:
-            canon_tag = canon_tag.replace('.html', '')
-        new_content = re.sub(r'<link href="[^"]*" rel="canonical"/>', canon_tag, new_content)
+    # Removed legacy meta tag restoration to allow POST_CONFIG overrides to take effect via template placeholders
+
 
     # --- Dynamic JSON-LD Schema Injection ---
     new_content = re.sub(r'<script type="application/ld\+json">.*?</script>', '', new_content, flags=re.DOTALL)
