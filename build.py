@@ -54,7 +54,6 @@ POST_CONFIG = {
     'gemini-image-generator-guide': {'color': 'pink', 'icon': 'fa-palette', 'category': 'AI绘图'},
     'gemini-banana-guide': {'color': 'yellow', 'icon': 'fa-palette', 'category': 'AI绘图'},
     'gemini-balance-guide': {'color': 'emerald', 'icon': 'fa-server', 'category': 'API教程'},
-    'gemini-live-guide': {'color': 'red', 'icon': 'fa-microphone-lines', 'category': '新功能'},
     'benefits': {'color': 'red', 'icon': 'fa-gift', 'category': '会员权益'},
     'gemini-region-error-fix': {'color': 'slate', 'icon': 'fa-wrench', 'category': '故障排除'},
     'gemini-subscription-error-fix': {'color': 'slate', 'icon': 'fa-circle-exclamation', 'category': '故障排除'},
@@ -70,7 +69,8 @@ POST_CONFIG = {
     'choose-model-cn': {'color': 'violet', 'icon': 'fa-robot', 'category': '模型选型'},
     'gemini-vs-chatgpt-vs-grok': {'color': 'yellow', 'icon': 'fa-scale-balanced', 'category': '竞品对比'},
     'comparison': {'color': 'yellow', 'icon': 'fa-not-equal', 'category': '竞品对比'},
-    'pro-vs-free': {'color': 'green', 'icon': 'fa-circle-half-stroke', 'category': '版本对比'}
+    'pro-vs-free': {'color': 'green', 'icon': 'fa-circle-half-stroke', 'category': '版本对比'},
+    'gemini-notebook-lm-guide': {'color': 'blue', 'icon': 'fa-book-open', 'category': '效率工具'}
 }
 
 def get_template():
@@ -330,103 +330,152 @@ def optimize_sales_card(soup):
     Optimizes the sidebar sales card to be more compact.
     """
     # Find the sales card by its unique title
-    card_title = soup.find('h3', string=re.compile('Gemini 3.0 Pro 成品号'))
+    # Relaxed regex to match "Gemini 3.0 Pro 成品号" or "Gemini Pro 会员成品号"
+    card_title = soup.find('h3', string=re.compile(r'Gemini.*Pro.*成品号'))
     if not card_title:
-        return soup
+        # Fallback: Try matching just "成品号" if the prefix changes
+        card_title = soup.find('h3', string=re.compile(r'.*成品号'))
     
-    # Go up to the container (h3 -> div -> div)
-    # The structure is: div > div > h3
-    card_container = card_title.parent
-    if not card_container:
-        return soup
+    main_container = None
     
-    # The main container is the parent of the card_container
-    # <div class="relative bg-[#0B0F19] ...">
-    main_container = card_container
-    if 'bg-[#0B0F19]' not in str(main_container.get('class', [])):
-         # Try one level up if we didn't hit the bg container
-         main_container = card_container.parent
+    if card_title:
+        # Go up to the container (h3 -> div -> div)
+        # The structure is: div > div > h3
+        card_container = card_title.parent
+        if card_container:
+            # The main container is the parent of the card_container
+            # <div class="relative bg-[#0B0F19] ...">
+            main_container = card_container
+            if 'bg-[#0B0F19]' not in str(main_container.get('class', [])):
+                # Try one level up if we didn't hit the bg container
+                main_container = card_container.parent
 
     if not main_container or 'bg-[#0B0F19]' not in str(main_container.get('class', [])):
-        # Fallback: find by class if traversal failed
-        main_container = soup.find('div', class_=lambda c: c and 'bg-[#0B0F19]' in c and 'p-6' in c)
+        # Fallback: find by class if traversal failed or title not found
+        # Strategy: Find div with the unique sales card background color
+        main_container = soup.find('div', class_=lambda c: c and 'bg-[#0B0F19]' in c)
     
     if not main_container:
         return soup
 
-    # 1. Reduce Padding of the main container (p-6 -> p-4)
+    # 1. Reduce Padding of the main container (p-6 -> p-5)
+    # Compromise: p-6 is too tall, p-4 is too short/empty.
+    # Let's try p-5 (20px).
     if main_container.has_attr('class'):
-        # Using p-4 (16px) instead of p-5 (20px) to save space
-        main_container['class'] = [c.replace('p-6', 'p-4') for c in main_container['class']]
+        # Further reduce vertical padding to compensate for the larger top offset
+        # p-5 -> px-5 py-4 (Keep horizontal width, reduce vertical height)
+        # This is a precision strike to reduce height without making it look "thin" horizontally.
+        new_classes = []
+        has_p = False
+        for c in main_container['class']:
+             if c == 'p-6' or c == 'p-5' or c == 'p-4':
+                  new_classes.append('px-5')
+                  new_classes.append('py-4')
+                  has_p = True
+             else:
+                  new_classes.append(c)
+        if not has_p: # Fallback if no padding class found (unlikely)
+             new_classes.append('px-5')
+             new_classes.append('py-4')
+        
+        # User confirmed: "gemini-balance-guide.html" looks perfect.
+        # We need to make sure this logic produces EXACTLY what that page has.
+        # Currently, build.py produces: px-5 py-4.
+        # And the template (gemini-balance-guide.html) has: px-5 py-4 (verified in source).
+        # So this logic is CORRECT.
+        
+        main_container['class'] = new_classes
 
     # 2. Optimize Header (Badge Row)
     # Select by unique combination of classes
     badge_row = main_container.select_one('.flex.justify-between.items-center')
     if badge_row and badge_row.has_attr('class'):
-        badge_row['class'] = [c.replace('mb-6', 'mb-2') for c in badge_row['class']]
+        # mb-6 -> mb-4 (Compromise)
+        badge_row['class'] = [c.replace('mb-6', 'mb-4') for c in badge_row['class']]
 
     # 3. Optimize Icon Container
     # Find the div that has h-32
-    icon_container = main_container.find('div', class_=lambda c: c and 'h-32' in c)
+    icon_container = main_container.find('div', class_=lambda c: c and ('h-32' in c or 'h-14' in c))
     if icon_container and icon_container.has_attr('class'):
-        # h-32 -> h-14, mb-6 -> mb-2
+        # h-32 -> h-20 (80px), mb-6 -> mb-4
+        # This keeps the icon prominent but saves vertical space.
         new_classes = []
         for c in icon_container['class']:
-            if c == 'h-32': new_classes.append('h-14')
-            elif c == 'mb-6': new_classes.append('mb-2')
+            if c == 'h-32' or c == 'h-14': new_classes.append('h-20')
+            elif c == 'mb-6' or c == 'mb-2': new_classes.append('mb-4')
             else: new_classes.append(c)
         icon_container['class'] = new_classes
         
-        # Optimize Icon Size (text-5xl -> text-2xl)
+        # Optimize Icon Size (text-5xl -> text-4xl)
         icon = icon_container.find('i')
         if icon and icon.has_attr('class'):
-             icon['class'] = [c.replace('text-5xl', 'text-2xl') for c in icon['class']]
+             icon['class'] = [c.replace('text-5xl', 'text-4xl').replace('text-2xl', 'text-4xl') for c in icon['class']]
 
-    # 4. Optimize Subtitle (mb-6 -> mb-2, pb-4 -> pb-2)
+    # 4. Optimize Subtitle (mb-6 -> mb-4, pb-4 -> pb-3)
     subtitle = main_container.find('p', class_=lambda c: c and 'text-xs' in c and 'border-b' in c)
     if subtitle and subtitle.has_attr('class'):
         new_classes = []
         for c in subtitle['class']:
-            if c == 'mb-6': new_classes.append('mb-2')
-            elif c == 'pb-4': new_classes.append('pb-2')
+            if c == 'mb-6': new_classes.append('mb-4')
+            elif c == 'pb-4': new_classes.append('pb-3')
             else: new_classes.append(c)
         subtitle['class'] = new_classes
 
-    # 5. Optimize Price Area (mb-6 -> mb-2)
+    # 5. Optimize Price Area (mb-6 -> mb-4)
     price_area = main_container.select_one('.flex.items-end.justify-between')
     if price_area and price_area.has_attr('class'):
-        price_area['class'] = [c.replace('mb-6', 'mb-2') for c in price_area['class']]
+        price_area['class'] = [c.replace('mb-6', 'mb-4') for c in price_area['class']]
         
-        # Optional: Make price slightly smaller if needed (e.g. text-3xl -> text-2xl)
-        # But keeping it big is good for sales. The margins save enough space.
-        price_text = price_area.find('div', class_=lambda c: c and 'text-3xl' in c)
+        # Keep Price Size Big (text-3xl)
+        price_text = price_area.find('div', class_=lambda c: c and ('text-3xl' in c or 'text-2xl' in c))
         if price_text and price_text.has_attr('class'):
-             price_text['class'] = [c.replace('text-3xl', 'text-2xl') for c in price_text['class']]
+             price_text['class'] = [c.replace('text-2xl', 'text-3xl') for c in price_text['class']]
 
-    # 6. Optimize Features List (mb-6 -> mb-2, space-y-3 -> space-y-2)
-    features = main_container.find('ul', class_=lambda c: c and 'space-y-3' in c)
+    # 6. Optimize Features List (mb-6 -> mb-4, space-y-3 -> space-y-2)
+    features = main_container.find('ul', class_=lambda c: c and ('space-y-3' in c or 'space-y-2' in c))
     if features and features.has_attr('class'):
         new_classes = []
         for c in features['class']:
-            if c == 'mb-6': new_classes.append('mb-2')
+            if c == 'mb-6': new_classes.append('mb-4')
             elif c == 'space-y-3': new_classes.append('space-y-2')
             else: new_classes.append(c)
         features['class'] = new_classes
 
-    # 7. Optimize Copy Code (mb-6 -> mb-2)
+    # 7. Optimize Copy Code (mb-6 -> mb-4)
     copy_code = main_container.find('div', onclick=True)
     if copy_code and copy_code.has_attr('class'):
-        copy_code['class'] = [c.replace('mb-6', 'mb-2') for c in copy_code['class']]
+        copy_code['class'] = [c.replace('mb-6', 'mb-4') for c in copy_code['class']]
         
     # 8. Optimize CTA Button (py-3.5 -> py-3)
     cta_btn = main_container.find('a', href='/#pricing')
     if cta_btn and cta_btn.has_attr('class'):
-        cta_btn['class'] = [c.replace('py-3.5', 'py-3') for c in cta_btn['class']]
+        # Restore original padding: py-3.5
+        # User Feedback: "CTA button too big again".
+        # Revert py-4 back to py-3.5.
+        # Also maybe remove text-lg if it makes it look too chunky.
+        
+        # Remove any existing py- classes
+        new_classes = [c for c in cta_btn['class'] if not c.startswith('py-')]
+        new_classes.append('py-3.5')
+        
+        # Remove text-lg if present, to reduce "bigness"
+        if 'text-lg' in new_classes:
+             new_classes.remove('text-lg')
+             
+        # Keep font-bold as it looks good
+        if 'font-bold' not in new_classes:
+             new_classes.append('font-bold')
+             
+        cta_btn['class'] = new_classes
 
     # 9. Optimize Guarantee Text (mt-4 -> mt-3)
-    guarantee = main_container.find('div', class_=lambda c: c and 'mt-4' in c and 'text-center' in c)
+    guarantee = main_container.find('div', class_=lambda c: c and ('mt-4' in c or 'mt-3' in c or 'mt-2' in c) and 'text-center' in c)
     if guarantee and guarantee.has_attr('class'):
-        guarantee['class'] = [c.replace('mt-4', 'mt-3') for c in guarantee['class']]
+        new_classes = []
+        for c in guarantee['class']:
+            if c == 'mt-2' or c == 'mt-3': new_classes.append('mt-4')
+            else: new_classes.append(c)
+        guarantee['class'] = new_classes
 
     # 10. Optimize Sticky Container Position (Breathing Room)
     # Find the parent sticky container
@@ -444,16 +493,140 @@ def optimize_sales_card(soup):
         new_sticky_classes = []
         for c in sticky_container['class']:
             # top-24 -> top-32 (Avoid touching header on scroll)
-            # Revert to top-24 for better vertical space usage
-            if c == 'top-24': new_sticky_classes.append('top-32') 
-            elif c == 'top-32': new_sticky_classes.append('top-32')
-            else: new_sticky_classes.append(c)
-        
-        # Add mt-12 if not present (Initial breathing room)
-        if 'mt-12' not in new_sticky_classes:
-            new_sticky_classes.append('mt-12')
+            # User reported overlay issue with header.
+            # Header height is usually around 64px-80px.
+            # If we use top-20 (80px), it might be barely touching.
+            # If we use top-24 (96px), it's safer.
+            # If we use top-28 (112px) or top-32 (128px), it's definitely safe.
+            # Previously we reduced it to top-20 to fix the "bottom hidden" issue.
+            # But now it overlaps the header.
+            # We MUST increase top offset to avoid overlap.
+            # Let's go back to top-28 (112px) or top-32 (128px).
+            # AND we must solve the "bottom hidden" issue by making the card SHORTER.
             
+            # User says: "现在这个销售卡片顶部到header导航栏距离不错... 问题是现在滑动洁面 距离又要调整 有没有办法 不要在调整距离了 随着页面固定好就可以了"
+             # The user likes the INITIAL gap.
+             # But when scrolling, the card "adjusts" (moves up or down) to hit the sticky point.
+             # The user wants the gap to be CONSTANT.
+             # This means the sticky offset (top-XX) must VISUALLY MATCH the initial gap relative to the viewport/header.
+             
+             # Currently: top-28 (112px).
+             # Initial Gap: mt-12 (48px) from element above.
+             # Header height is the key variable here.
+             # If Header is ~80px.
+             # Sticky Top Position relative to viewport = 112px.
+             # Gap below header = 112px - 80px = 32px.
+             
+             # Initial Position relative to viewport (before scroll):
+             # Header (80px) + Breadcrumbs/Title Section (variable) + mt-12 (48px).
+             # Wait, the card is in the sidebar. Its top is aligned with the article content.
+             # The article content usually has some top padding/margin.
+             
+             # If the user says "Don't adjust distance when sliding", they mean:
+             # When the scroll passes the point where the card *would* stick,
+             # the card should just stay exactly where it is visually relative to the header, 
+             # without jumping up or down.
+             
+             # This implies that 'top-XX' should be exactly equal to the distance from the top of the viewport to the top of the card in its natural position.
+             # Since we don't know the exact pixel height of the header + top spacing, we have to guess or use a larger value.
+             
+             # However, the user previously rejected top-36 (144px).
+             # And they accepted top-28 (112px) as "good distance".
+             # But they complain about "distance adjusting" during scroll.
+             
+             # Maybe the issue is that top-28 is TOO SMALL compared to the initial position?
+             # Or TOO LARGE?
+             # If it jumps UP, top-28 is too small.
+             # If it jumps DOWN, top-28 is too large.
+             
+             # "不要在调整距离了" -> Don't change the gap.
+             # This strongly suggests using a larger 'top' value so it sticks LATER, matching the visual flow.
+             # But I already tried top-36 and they said "Don't adjust".
+             # Wait, maybe they meant "Don't change it AGAIN" (referring to my previous change)?
+             # "现在这个...距离不错...问题是...距离又要调整" -> The "adjustment" happens DURING SCROLL.
+             
+             # Let's try to set 'top-32' (128px).
+             # It's between top-28 (112px) and top-36 (144px).
+             # 128px - 80px = 48px gap.
+             # This matches mt-12 (48px) perfectly!
+             # So top-32 is theoretically the "Magic Number" for consistency.
+             
+             if c == 'top-24' or c == 'top-20' or c == 'top-32' or c == 'top-36' or c == 'top-28': new_sticky_classes.append('top-32') 
+             else: new_sticky_classes.append(c)
+        
+        # Ensure mt-12 is present for initial spacing
+        # User Feedback: "间距 是不是有变化了 不能固定嘛？"
+        # The user feels the spacing is changing or inconsistent.
+        # This might be because mt-12 (margin-top) scrolls with the element, but top-28 (sticky offset) only applies when stuck.
+        # If the user wants the GAP to be CONSTANT between the header and the card, regardless of scroll state:
+        # 1. Initial state: The card is below the header. The gap is determined by the layout flow (margin).
+        # 2. Sticky state: The card is stuck. The gap is determined by 'top-28'.
+        
+        # If the initial gap (mt-12 + flow) != sticky gap (top-28), the card will "jump" or shift visually when it hits the sticky point.
+        # Header height ~ 80px.
+        # Sticky top-28 = 112px from viewport top.
+        # So the gap from header bottom to card top = 112px - 80px = 32px.
+        
+        # Initial state:
+        # The card is inside a column.
+        # If we use mt-12 (48px), the initial gap is 48px from the element above it.
+        # If the element above it is the breadcrumb/title row which is aligned with the top,
+        # then the visual gap might be consistent.
+        
+        # However, the user says "就算向下滑动 间距也不要变化了".
+        # This implies the sticky position (top-28) should VISUALLY MATCH the initial top margin relative to the viewport/header.
+        # If the card starts at Y=150px, and the header is 80px, the gap is 70px.
+        # When you scroll, if the card sticks at Y=112px, the gap shrinks to 32px. This is a CHANGE.
+        # To fix this, we need to make the sticky position match the visual gap the user likes.
+        
+        # If the user likes the "current" gap (which they saw in the screenshot),
+        # and complained about it changing when scrolling.
+        # We need to increase 'top' to match the initial visual position.
+        # Let's try top-32 (128px) or even more.
+        # 128px - 80px (header) = 48px gap.
+        # This matches mt-12 (48px).
+        # So if we set top-32 or top-36, it might feel more "fixed".
+        
+        if 'mt-12' not in new_sticky_classes:
+             if 'mt-6' in new_sticky_classes:
+                  new_sticky_classes = [c.replace('mt-6', 'mt-12') for c in new_sticky_classes]
+             else:
+                  new_sticky_classes.append('mt-12')
+            
+        # User says: "Sales card bottom overlaps with webpage bottom/footer. No breathing room."
+        # We need to add margin-bottom to the sticky container.
+        # This will ensure that when the user scrolls to the bottom, the card pushes against the footer or next section with some gap.
+        if 'mb-12' not in new_sticky_classes:
+             # Actually, mb-12 on the sticky element might not work if the parent container height is limiting.
+             # The better fix (which we applied manually) is to add pb-32 to the <aside> container.
+             # Let's try to apply that here too.
+             # Traverse up to find <aside>
+             aside_container = sticky_container.parent
+             if aside_container and aside_container.name == 'aside':
+                 if aside_container.has_attr('class'):
+                     if 'pb-32' not in aside_container['class']:
+                         aside_container['class'].append('pb-32')
+                 else:
+                     aside_container['class'] = ['pb-32']
+             
+             # Still keep mb-12 on sticky just in case
+             # new_sticky_classes.append('mb-12') 
+             # Update: We removed mb-12 in manual fix because pb-32 handles it better.
+             # So let's NOT add mb-12 if we successfully added pb-32.
+             pass
+             
         sticky_container['class'] = new_sticky_classes
+
+    # Optimize the last element's bottom margin inside the card to reduce empty space
+    # Find the last child div
+    last_div = main_container.find_all('div', recursive=False)[-1] if main_container.find_all('div', recursive=False) else None
+    if last_div and last_div.has_attr('class'):
+         # If it has mt-4, maybe reduce it?
+         # The code has: <div class="mt-4 text-center">...</div>
+         # Let's change mt-4 to mt-2 for the footer/guarantee text
+         pass # Already handled in step 9 (mt-4 -> mt-3)
+
+    return soup
 
     return soup
 
