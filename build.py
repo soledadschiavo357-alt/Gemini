@@ -76,7 +76,7 @@ POST_CONFIG = {
 # CTA Banner Configuration
 CTA_HTML = """
 <div id="cta-banner" class="max-w-3xl mx-auto px-4 sm:px-0 mb-10 mt-6 reveal active">
-    <a href="/#pricing?utm_source=blog_top_card" class="group relative block transform hover:-translate-y-1 transition duration-300">
+    <a href="/#pricing" class="group relative block transform hover:-translate-y-1 transition duration-300">
         <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl opacity-40 blur group-hover:opacity-80 transition duration-500"></div>
         
         <div class="relative flex items-center justify-between gap-4 bg-[#0B0F19] p-4 sm:p-5 rounded-xl border border-white/10 shadow-xl">
