@@ -476,27 +476,40 @@ def optimize_sales_card(soup):
     if copy_code and copy_code.has_attr('class'):
         copy_code['class'] = [c.replace('mb-6', 'mb-4') for c in copy_code['class']]
         
-    # 8. Optimize CTA Button (py-3.5 -> py-3)
-    cta_btn = main_container.find('a', href='/#pricing')
-    if cta_btn and cta_btn.has_attr('class'):
-        # Restore original padding: py-3.5
-        # User Feedback: "CTA button too big again".
-        # Revert py-4 back to py-3.5.
-        # Also maybe remove text-lg if it makes it look too chunky.
-        
-        # Remove any existing py- classes
-        new_classes = [c for c in cta_btn['class'] if not c.startswith('py-')]
-        new_classes.append('py-3.5')
-        
-        # Remove text-lg if present, to reduce "bigness"
-        if 'text-lg' in new_classes:
-             new_classes.remove('text-lg')
-             
-        # Keep font-bold as it looks good
-        if 'font-bold' not in new_classes:
-             new_classes.append('font-bold')
-             
-        cta_btn['class'] = new_classes
+    # 8. Optimize CTA Button (Wrapper Link & Inner Link)
+    
+    # Case A: The card is wrapped in an <a> tag (Common in "Top Card" design)
+    if main_container.parent and main_container.parent.name == 'a':
+        wrapper_a = main_container.parent
+        if wrapper_a.has_attr('href') and '/#pricing' in wrapper_a['href']:
+             wrapper_a['href'] = '/#pricing'
+
+    # Case B: The link is inside the card (Common in "Sidebar" design)
+    # Use regex to find ALL buttons even if they have query params
+    cta_btns = main_container.find_all('a', href=re.compile(r'/#pricing'))
+    for cta_btn in cta_btns:
+        if cta_btn.has_attr('class'):
+            # Force clean URL
+            cta_btn['href'] = '/#pricing'
+            
+            # Restore original padding: py-3.5
+            # User Feedback: "CTA button too big again".
+            # Revert py-4 back to py-3.5.
+            # Also maybe remove text-lg if it makes it look too chunky.
+            
+            # Remove any existing py- classes
+            new_classes = [c for c in cta_btn['class'] if not c.startswith('py-')]
+            new_classes.append('py-3.5')
+            
+            # Remove text-lg if present, to reduce "bigness"
+            if 'text-lg' in new_classes:
+                 new_classes.remove('text-lg')
+                 
+            # Keep font-bold as it looks good
+            if 'font-bold' not in new_classes:
+                 new_classes.append('font-bold')
+                 
+            cta_btn['class'] = new_classes
 
     # 9. Optimize Guarantee Text (mt-4 -> mt-3)
     guarantee = main_container.find('div', class_=lambda c: c and ('mt-4' in c or 'mt-3' in c or 'mt-2' in c) and 'text-center' in c)
@@ -700,6 +713,12 @@ def enforce_seo_rules(soup):
                 # Check for specific exceptions? 
                 # For now, enforce pyramid model strictly for these keywords
                 print(f"  [SEO Auto-Fix] Redirecting CTA '{text}' from {href} to /#pricing")
+                a['href'] = '/#pricing'
+
+        # Rule 3: Clean up UTM and other params from internal pricing links
+        if '/#pricing' in href:
+            if '?' in href:
+                print(f"  [SEO Auto-Fix] Cleaning pricing link from {href} to /#pricing")
                 a['href'] = '/#pricing'
 
     return soup

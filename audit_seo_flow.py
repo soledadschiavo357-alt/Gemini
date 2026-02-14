@@ -19,8 +19,11 @@ class PageParser(HTMLParser):
         # Metadata
         self.page_title = None
         self.page_description = None
+        self.breadcrumb_text = None
         self._in_title = False
+        self._in_breadcrumb = False
         self._title_buffer = []
+        self._breadcrumb_buffer = []
 
     def handle_starttag(self, tag, attrs):
         # Metadata Extraction
@@ -33,6 +36,14 @@ class PageParser(HTMLParser):
             attrs_dict = {k.lower(): v for k, v in attrs if v is not None}
             if attrs_dict.get('name', '').lower() == 'description':
                 self.page_description = attrs_dict.get('content', '').strip()
+        
+        # Breadcrumb Extraction
+        # Looking for <li aria-current="page">...</li>
+        if tag == 'li':
+            attrs_dict = {k.lower(): v for k, v in attrs if v is not None}
+            if attrs_dict.get('aria-current', '') == 'page':
+                self._in_breadcrumb = True
+                self._breadcrumb_buffer = []
 
         # Link Extraction
         if tag == 'a':
@@ -59,6 +70,9 @@ class PageParser(HTMLParser):
         # Metadata
         if self._in_title:
             self._title_buffer.append(data)
+            
+        if self._in_breadcrumb:
+            self._breadcrumb_buffer.append(data)
 
         # Link
         if self.current_link is not None:
@@ -71,6 +85,14 @@ class PageParser(HTMLParser):
             full_title = ''.join(self._title_buffer).strip()
             if full_title:
                 self.page_title = full_title
+                
+        if tag == 'li' and self._in_breadcrumb:
+            self._in_breadcrumb = False
+            full_bread = ''.join(self._breadcrumb_buffer).strip()
+            # Clean up newlines/spaces
+            full_bread = re.sub(r'\s+', ' ', full_bread)
+            if full_bread:
+                self.breadcrumb_text = full_bread
         
         # Link
         if tag == 'a' and self.current_link is not None:
@@ -244,6 +266,7 @@ def main():
     missing_titles = [] # list(url)
     missing_descriptions = [] # list(url)
     short_descriptions = [] # list((url, desc_len))
+    breadcrumb_issues = [] # list((url, title, breadcrumb))
     
     # Scanning
     for f in files:
@@ -265,6 +288,22 @@ def main():
                 if parser.page_title:
                     page_titles[source_url] = parser.page_title
                     duplicate_titles[parser.page_title].append(source_url)
+                    
+                    # Breadcrumb Check
+                    # Skip for index pages or special pages if needed
+                    # Only check if breadcrumb exists
+                    if parser.breadcrumb_text:
+                        # Simple consistency check: Breadcrumb text should be contained in Title (or vice versa)
+                        # Remove common suffixes from title
+                        clean_title = parser.page_title.split(' - ')[0].split(' | ')[0].strip()
+                        bread = parser.breadcrumb_text.strip()
+                        
+                        if bread not in clean_title and clean_title not in bread:
+                             breadcrumb_issues.append((source_url, clean_title, bread))
+                    elif '/blog/' in source_url and source_url != '/blog/':
+                         # Blog posts MUST have breadcrumbs
+                         breadcrumb_issues.append((source_url, "MISSING", "MISSING"))
+
                 else:
                     missing_titles.append(source_url)
                     
@@ -610,7 +649,18 @@ def main():
     if not has_tdk_issues:
         print("  ✅ TDK Health is perfect! No duplicates, missing, or short meta tags.")
 
-    # 7. SEO Health Score
+    # 7. Breadcrumb Consistency Check
+    print("\n🍞 Breadcrumb Consistency Check:")
+    if breadcrumb_issues:
+        print(f"  🔴 Found {len(breadcrumb_issues)} pages with inconsistent Breadcrumbs (vs Title):")
+        for url, title, bread in breadcrumb_issues:
+            print(f"    - {url}")
+            print(f"      * Title: {title}")
+            print(f"      * Bread: {bread}")
+    else:
+        print("  ✅ All breadcrumbs match their page titles.")
+
+    # 8. SEO Health Score
     print("\n" + "="*50)
     print("🏆 SEO HEALTH SCORE")
     print("="*50)
@@ -693,6 +743,11 @@ def main():
         points = len(short_descriptions) * 2
         score -= points
         deductions.append(f"-{points} pts: {len(short_descriptions)} Short Descriptions (Low Impact)")
+
+    if breadcrumb_issues:
+        points = len(breadcrumb_issues) * 5
+        score -= points
+        deductions.append(f"-{points} pts: {len(breadcrumb_issues)} Breadcrumb Inconsistencies (High Impact)")
 
     # Cap score
     score = max(0, score)
