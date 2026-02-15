@@ -70,7 +70,8 @@ POST_CONFIG = {
     'gemini-vs-chatgpt-vs-grok': {'color': 'yellow', 'icon': 'fa-scale-balanced', 'category': '竞品对比'},
     'comparison': {'color': 'yellow', 'icon': 'fa-not-equal', 'category': '竞品对比'},
     'pro-vs-free': {'color': 'green', 'icon': 'fa-circle-half-stroke', 'category': '版本对比'},
-    'gemini-notebook-lm-guide': {'color': 'blue', 'icon': 'fa-book-open', 'category': '效率工具'}
+    'gemini-notebook-lm-guide': {'color': 'blue', 'icon': 'fa-book-open', 'category': '效率工具'},
+    'gemini-remove-watermark-guide': {'color': 'pink', 'icon': 'fa-eraser', 'category': 'AI绘图'}
 }
 
 # CTA Banner Configuration
